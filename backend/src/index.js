@@ -98,8 +98,15 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-  console.log(`ReconAI running on http://localhost:${PORT}`);
-});
+// Only start a listening server when this file is run directly
+// (e.g. `node backend/src/index.js` for local dev / Render).
+// When imported by the Vercel serverless entrypoint (api/index.js),
+// we just export the Express app and let the platform handle the socket.
+const isMainModule = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
+if (isMainModule) {
+  app.listen(PORT, () => {
+    console.log(`ReconAI running on http://localhost:${PORT}`);
+  });
+}
 
 export default app;
