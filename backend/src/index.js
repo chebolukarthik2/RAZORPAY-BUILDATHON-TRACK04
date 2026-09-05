@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import datasetsRouter from './routes/datasets.js';
 import dashboardRouter from './routes/dashboard.js';
@@ -12,11 +14,13 @@ import aiRouter from './routes/ai.js';
 
 dotenv.config();
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3000;
-const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:8080';
+const FRONTEND_DIR = path.join(__dirname, '..', '..', 'frontend');
 
-// Middleware
+// CORS
+const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
 app.use(cors({
   origin: CORS_ORIGIN,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
@@ -36,7 +40,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Routes
+// API Routes
 app.use('/api/datasets', datasetsRouter);
 app.use('/api/dashboard', dashboardRouter);
 app.use('/api/reconciliation', reconciliationRouter);
@@ -50,6 +54,36 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Frontend static files
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.svg': 'image/svg+xml',
+  '.ico': 'image/x-icon',
+};
+
+app.use(express.static(FRONTEND_DIR, {
+  index: 'login.html',
+  setHeaders: (res, filePath) => {
+    const ext = path.extname(filePath);
+    if (MIME_TYPES[ext]) {
+      res.setHeader('Content-Type', MIME_TYPES[ext]);
+    }
+  },
+}));
+
+// SPA fallback: serve index.html for non-API, non-file routes
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'API endpoint not found' });
+  }
+  res.sendFile(path.join(FRONTEND_DIR, 'login.html'));
+});
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
@@ -57,8 +91,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`ReconAI Backend running on http://localhost:${PORT}`);
-  console.log(`CORS origin: ${CORS_ORIGIN}`);
+  console.log(`ReconAI running on http://localhost:${PORT}`);
 });
 
 export default app;
