@@ -8,11 +8,41 @@ const api = {
         headers: { 'Content-Type': 'application/json', ...options.headers },
         ...options,
       });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({ error: res.statusText }));
-        throw new Error(err.error || `HTTP ${res.status}`);
+
+      // Read the raw body once, then decide how to interpret it. This avoids
+      // calling res.json() on an empty or non-JSON body (e.g. an HTML page
+      // returned by a misconfigured route), which throws a cryptic
+      // "Unexpected end of JSON input" error instead of a useful message.
+      const raw = await res.text();
+      const contentType = res.headers.get('content-type') || '';
+      let data = null;
+
+      if (raw && contentType.includes('application/json')) {
+        try {
+          data = JSON.parse(raw);
+        } catch (parseErr) {
+          throw new Error(
+            `Invalid JSON response from ${endpoint} (HTTP ${res.status}). ` +
+            `The API may be unreachable or misconfigured.`
+          );
+        }
+      } else if (raw) {
+        // Got a body but it isn't JSON (e.g. an HTML error page) — surface
+        // that clearly instead of pretending it's data.
+        throw new Error(
+          `Expected JSON from ${endpoint} but received ${contentType || 'unknown content-type'} ` +
+          `(HTTP ${res.status}). The API may be unreachable or misconfigured.`
+        );
+      } else if (!res.ok) {
+        // Empty body on an error status.
+        throw new Error(`HTTP ${res.status} ${res.statusText} from ${endpoint}`);
       }
-      return await res.json();
+
+      if (!res.ok) {
+        throw new Error((data && data.error) || `HTTP ${res.status}`);
+      }
+
+      return data;
     } catch (error) {
       console.error(`API Error [${endpoint}]:`, error);
       throw error;
