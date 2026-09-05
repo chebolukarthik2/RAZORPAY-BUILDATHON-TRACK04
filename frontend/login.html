@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>ReconAI — Sign In</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+<style>
+  @layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}}
+  ::-webkit-scrollbar{display:none;}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-low":"#edf4ff","on-background":"#001d32","on-error-container":"#93000a","tertiary-fixed-dim":"#adc6ff","on-primary-fixed":"#011d35","error-container":"#ffdad6","background":"#f7f9ff","surface-container":"#e3efff","secondary-fixed-dim":"#b5c5fb","primary":"#00152a","primary-fixed-dim":"#b0c9e8","surface-bright":"#f7f9ff","surface-container-lowest":"#ffffff","on-primary-fixed-variant":"#314863","primary-container":"#102a43","surface-container-high":"#d8eaff","on-secondary-container":"#435382","on-error":"#ffffff","surface":"#f7f9ff","secondary-fixed":"#dbe1ff","outline-variant":"#c3c6ce","surface-variant":"#cee5ff","on-tertiary-fixed":"#001a42","on-tertiary":"#ffffff","error":"#ba1a1a","tertiary-fixed":"#d8e2ff","on-primary":"#ffffff","inverse-primary":"#b0c9e8","on-surface-variant":"#43474d","primary-fixed":"#d1e4ff","surface-dim":"#c1ddfb","surface-container-highest":"#cee5ff","on-surface":"#001d32","on-tertiary-fixed-variant":"#004395","on-secondary-fixed":"#041845","inverse-surface":"#16334a","surface-tint":"#49607c","on-tertiary-container":"#4c8dff","on-primary-container":"#7a92b0","tertiary-container":"#00275b","inverse-on-surface":"#e8f2ff","secondary":"#4d5d8d","tertiary":"#001334","on-secondary-fixed-variant":"#354573","secondary-container":"#b8c8fe","outline":"#74777e","on-secondary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"sidebar-width-collapsed":"4.5rem","space-2xl":"2rem","space-xl":"1.5rem","space-md":"0.75rem","sidebar-width":"16rem","space-sm":"0.5rem","space-base":"1rem","space-xs":"0.25rem","space-lg":"1.25rem","gutter":"1rem","space-3xl":"2.5rem","table-row-h-default":"2.5rem","table-row-h-dense":"2rem","space-2xs":"0.125rem"},"fontFamily":{"headline-md":["Inter"],"headline-lg":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Inter"],"mono-num-lg":["Inter"],"mono-num-sm":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"mono-num-md":["Inter"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.005em","fontWeight":"400"}],"body-lg":["15px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"mono-num-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-num-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"mono-num-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"500"}]}}}}</script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex items-center justify-center p-space-xl">
+  <div class="w-full max-w-[420px] space-y-space-lg">
+    <!-- Branding -->
+    <div class="text-center space-y-space-sm">
+      <div class="flex items-center justify-center gap-space-sm">
+        <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+          <span class="material-symbols-outlined text-on-tertiary-container text-[22px]">sync_alt</span>
+        </div>
+        <div class="text-left">
+          <span class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold block leading-none">ReconAI</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">AI Finance Controller</span>
+        </div>
+      </div>
+      <div class="pt-space-xs">
+        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-mono-num-sm text-mono-num-sm bg-surface-container-low text-secondary border border-outline-variant/40">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+          Demo environment
+        </span>
+      </div>
+    </div>
+
+    <!-- Login Card -->
+    <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 shadow-sm p-space-lg">
+      <div class="space-y-space-md">
+        <div class="space-y-space-xs">
+          <h1 class="font-headline-md text-headline-md text-primary font-semibold">Sign in to your account</h1>
+          <p class="font-body-sm text-body-sm text-secondary">Enter your credentials to access the finance controller dashboard.</p>
+        </div>
+
+        <!-- Form -->
+        <form id="loginForm" class="space-y-space-md" autocomplete="off">
+          <!-- Email -->
+          <div class="space-y-space-2xs">
+            <label for="email" class="font-label-md text-label-md text-primary block">Email address</label>
+            <div class="relative">
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
+                <span class="material-symbols-outlined text-[18px]">mail</span>
+              </div>
+              <input
+                id="email"
+                type="email"
+                required
+                placeholder="you@company.com"
+                class="w-full h-10 pl-10 pr-3 bg-surface-container-low rounded-lg border border-outline-variant/60 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-shadow"
+              >
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="space-y-space-2xs">
+            <label for="password" class="font-label-md text-label-md text-primary block">Password</label>
+            <div class="relative">
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
+                <span class="material-symbols-outlined text-[18px]">lock</span>
+              </div>
+              <input
+                id="password"
+                type="password"
+                required
+                placeholder="Enter password"
+                class="w-full h-10 pl-10 pr-10 bg-surface-container-low rounded-lg border border-outline-variant/60 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-shadow"
+              >
+              <button
+                type="button"
+                id="togglePassword"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-secondary hover:text-primary transition-colors"
+                tabindex="-1"
+              >
+                <span class="material-symbols-outlined text-[18px]" id="eyeIcon">visibility_off</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Error message -->
+          <div id="errorMessage" class="hidden rounded-lg p-space-sm bg-error-container/30 border border-error/20 text-error font-body-sm text-body-sm flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-[16px]">error</span>
+            <span id="errorText">Invalid credentials. Please try again.</span>
+          </div>
+
+          <!-- Sign In Button -->
+          <button
+            type="submit"
+            id="signInBtn"
+            class="w-full h-10 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md shadow-sm transition-all active:scale-[0.99] flex items-center justify-center gap-space-xs"
+          >
+            <span class="material-symbols-outlined text-[18px]">login</span>
+            <span id="signInText">Sign In</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="relative flex items-center gap-space-sm py-space-xs">
+            <div class="flex-1 h-px bg-outline-variant/40"></div>
+            <span class="font-label-sm text-label-sm text-secondary">or</span>
+            <div class="flex-1 h-px bg-outline-variant/40"></div>
+          </div>
+
+          <!-- Demo Button -->
+          <button
+            type="button"
+            id="demoBtn"
+            class="w-full h-10 bg-surface-container-low hover:bg-surface-container text-primary border border-outline-variant/50 rounded-lg font-label-md text-label-md shadow-sm transition-all active:scale-[0.99] flex items-center justify-center gap-space-xs"
+          >
+            <span class="material-symbols-outlined text-[18px] text-tertiary-fixed-dim">science</span>
+            <span>Use Demo Account</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Demo Credentials Helper -->
+    <div class="bg-surface-container-low rounded-lg p-space-md border border-outline-variant/30 space-y-space-xs">
+      <div class="flex items-center gap-space-xs">
+        <span class="material-symbols-outlined text-[15px] text-secondary">info</span>
+        <span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">Demo Credentials</span>
+      </div>
+      <div class="grid grid-cols-2 gap-space-sm text-body-sm font-body-sm mt-space-xs">
+        <div>
+          <span class="text-secondary block">Email</span>
+          <span class="font-mono-num-sm text-mono-num-sm font-medium text-primary">demo@reconai.app</span>
+        </div>
+        <div>
+          <span class="text-secondary block">Password</span>
+          <span class="font-mono-num-sm text-mono-num-sm font-medium text-primary">ReconAI@2026</span>
+        </div>
+      </div>
+      <p class="font-body-sm text-body-sm text-secondary pt-space-xs border-t border-outline-variant/20">
+        Accepts any email/password combination for demo purposes.
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <p class="text-center font-body-sm text-body-sm text-secondary">
+      &copy; 2026 ReconAI. AI-powered financial reconciliation.
+    </p>
+  </div>
+
+  <script src="auth.js"></script>
+  <script>
+    (function() {
+      // Redirect if already authenticated
+      if (Auth.isAuthenticated()) {
+        window.location.href = '/dashboard.html';
+        return;
+      }
+
+      var emailInput = document.getElementById('email');
+      var passwordInput = document.getElementById('password');
+      var signInBtn = document.getElementById('signInBtn');
+      var signInText = document.getElementById('signInText');
+      var demoBtn = document.getElementById('demoBtn');
+      var togglePassword = document.getElementById('togglePassword');
+      var eyeIcon = document.getElementById('eyeIcon');
+      var errorMessage = document.getElementById('errorMessage');
+      var errorText = document.getElementById('errorText');
+      var form = document.getElementById('loginForm');
+
+      // Toggle password visibility
+      togglePassword.addEventListener('click', function() {
+        var isPassword = passwordInput.type === 'password';
+        passwordInput.type = isPassword ? 'text' : 'password';
+        eyeIcon.textContent = isPassword ? 'visibility' : 'visibility_off';
+      });
+
+      // Fill demo credentials
+      demoBtn.addEventListener('click', function() {
+        emailInput.value = 'demo@reconai.app';
+        passwordInput.value = 'ReconAI@2026';
+        hideError();
+        emailInput.focus();
+      });
+
+      // Show error
+      function showError(msg) {
+        errorText.textContent = msg || 'Invalid credentials. Please try again.';
+        errorMessage.classList.remove('hidden');
+      }
+
+      // Hide error
+      function hideError() {
+        errorMessage.classList.add('hidden');
+      }
+
+      // Handle form submit
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideError();
+
+        var email = emailInput.value.trim();
+        var password = passwordInput.value;
+
+        if (!email || !password) {
+          showError('Please enter both email and password.');
+          return;
+        }
+
+        // Show loading state
+        signInBtn.disabled = true;
+        signInText.textContent = 'Signing in...';
+
+        // Simulate network delay for realism
+        setTimeout(function() {
+          Auth.login(email, password);
+          window.location.href = '/dashboard.html';
+        }, 600);
+      });
+    })();
+  </script>
+</body>
+</html>

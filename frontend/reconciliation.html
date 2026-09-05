@@ -1,0 +1,834 @@
+﻿<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"surface-container-low":"#edf4ff","on-background":"#001d32","on-error-container":"#93000a","tertiary-fixed-dim":"#adc6ff","on-primary-fixed":"#011d35","error-container":"#ffdad6","background":"#f7f9ff","surface-container":"#e3efff","secondary-fixed-dim":"#b5c5fb","primary":"#00152a","primary-fixed-dim":"#b0c9e8","surface-bright":"#f7f9ff","surface-container-lowest":"#ffffff","on-primary-fixed-variant":"#314863","primary-container":"#102a43","surface-container-high":"#d8eaff","on-secondary-container":"#435382","on-error":"#ffffff","surface":"#f7f9ff","secondary-fixed":"#dbe1ff","outline-variant":"#c3c6ce","surface-variant":"#cee5ff","on-tertiary-fixed":"#001a42","on-tertiary":"#ffffff","error":"#ba1a1a","tertiary-fixed":"#d8e2ff","on-primary":"#ffffff","inverse-primary":"#b0c9e8","on-surface-variant":"#43474d","primary-fixed":"#d1e4ff","surface-dim":"#c1ddfb","surface-container-highest":"#cee5ff","on-surface":"#001d32","on-tertiary-fixed-variant":"#004395","on-secondary-fixed":"#041845","inverse-surface":"#16334a","surface-tint":"#49607c","on-tertiary-container":"#4c8dff","on-primary-container":"#7a92b0","tertiary-container":"#00275b","inverse-on-surface":"#e8f2ff","secondary":"#4d5d8d","tertiary":"#001334","on-secondary-fixed-variant":"#354573","secondary-container":"#b8c8fe","outline":"#74777e","on-secondary":"#ffffff"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"sidebar-width-collapsed":"4.5rem","space-2xl":"2rem","space-xl":"1.5rem","space-md":"0.75rem","sidebar-width":"16rem","space-sm":"0.5rem","space-base":"1rem","space-xs":"0.25rem","space-lg":"1.25rem","gutter":"1rem","space-3xl":"2.5rem","table-row-h-default":"2.5rem","table-row-h-dense":"2rem","space-2xs":"0.125rem"},"fontFamily":{"headline-md":["Inter"],"headline-lg":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"body-lg":["Inter"],"label-sm":["Inter"],"display-lg":["Inter"],"mono-num-lg":["Inter"],"mono-num-sm":["Inter"],"headline-sm":["Inter"],"body-md":["Inter"],"mono-num-md":["Inter"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0.005em","fontWeight":"400"}],"body-lg":["15px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"mono-num-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"mono-num-sm":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"500"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"mono-num-md":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-sidebar-width bg-primary z-50 flex flex-col justify-between select-none"><div class="flex flex-col"><div class="px-space-lg py-space-xl"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-tertiary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-tertiary-container text-[20px]">sync_alt</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-primary tracking-tight">ReconAI</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-on-primary-container">AI Finance Controller</span></div></div></div><div class="px-space-sm pt-space-xs"><nav class="flex flex-col gap-space-2xs" data-active-classes="bg-primary-container text-on-primary font-headline-sm shadow-inner"><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-primary-fixed-dim hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="dashboard" href="dashboard.html"><span class="material-symbols-outlined text-[18px]">grid_view</span><span class="font-body-md text-body-md">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary font-headline-sm shadow-inner transition-colors" data-path="reconciliation" href="reconciliation.html"><span class="material-symbols-outlined text-[18px]">account_balance</span><span class="font-body-md text-body-md">Reconciliation</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-primary-fixed-dim hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="exceptions" href="exceptions.html"><span class="material-symbols-outlined text-[18px]">warning</span><span class="font-body-md text-body-md">Exceptions</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-primary-fixed-dim hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="audit-trail" href="audit.html"><span class="material-symbols-outlined text-[18px]">history_toggle_off</span><span class="font-body-md text-body-md">Audit Trail</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-primary-fixed-dim hover:bg-primary-container/60 hover:text-on-primary transition-colors" data-path="finance-q-a" href="finance-qna.html"><span class="material-symbols-outlined text-[18px]">forum</span><span class="font-body-md text-body-md">Finance Q&amp;A</span></a></nav></div></div><div class="p-space-md flex flex-col gap-space-sm bg-tertiary"><div class="flex items-center gap-space-xs px-space-xs"><span class="inline-block w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span><span class="font-label-sm text-label-sm text-on-primary-container">All systems operational</span></div><div class="flex items-center justify-between p-space-xs rounded-lg hover:bg-primary-container/40 transition-colors"><div class="flex items-center gap-space-sm"><div class="w-7 h-7 rounded-lg bg-primary-container flex items-center justify-center text-on-primary font-label-md text-label-md">FC</div><div class="flex flex-col"><span class="font-body-md text-body-md text-on-primary leading-none">Controller</span><span class="font-label-sm text-label-sm text-on-primary-container mt-space-2xs">Audit &amp; Treasury</span></div></div><a class="text-primary-fixed-dim hover:text-on-primary transition-colors flex items-center justify-center p-space-2xs" data-path="settings" href="#"><span class="material-symbols-outlined text-[18px]">settings</span></a><button class="text-primary-fixed-dim hover:text-on-primary transition-colors flex items-center justify-center p-space-2xs" onclick="Auth.logout()" title="Logout" type="button"><span class="material-symbols-outlined text-[18px]">logout</span></button></div></div></aside><div class="pl-sidebar-width"><header class="fixed top-0 left-sidebar-width right-0 h-14 bg-surface-container-lowest border-b border-outline-variant/30 z-40 flex items-center justify-between px-space-xl"><div class="flex items-center gap-space-sm"><span class="font-label-sm text-label-sm uppercase text-on-surface-variant font-semibold">RECONAI</span><span class="text-outline-variant font-body-sm text-body-sm">/</span><span class="font-label-sm text-label-sm text-on-surface-variant">Console</span><span class="text-outline-variant font-body-sm text-body-sm">/</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Reconciliation</span><span class="hidden lg:inline-block ml-space-md pl-space-md border-l border-outline-variant/40 font-body-sm text-body-sm text-on-surface-variant italic">Reconcile every payment. Explain every mismatch. Surface every exception.</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded-lg bg-surface-container-low text-on-surface-variant font-mono-num-sm text-mono-num-sm"><span class="material-symbols-outlined text-[16px] text-secondary">calendar_today</span><span class="">04 Sep 2026</span></div><div class="h-4 w-[1px] bg-outline-variant/40"></div><button class="relative p-space-xs rounded text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-error"></span></button><button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help_outline</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></header><main class="relative pt-14 w-full bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive Script to manage Active Nav item, Modal & Drawer toggles -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Synchronize Sidebar Active Item
+      const navLinks = document.querySelectorAll('aside nav a');
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-path') === 'reconciliation') {
+          link.className = 'flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary font-headline-sm shadow-inner transition-colors';
+        } else {
+          link.className = 'flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-primary-fixed-dim hover:bg-primary-container/60 hover:text-on-primary transition-colors';
+        }
+      });
+
+      // Quick interactive state handles
+      const drawer = document.getElementById('investigation-drawer');
+      const closeDrawerBtn = document.getElementById('close-drawer-btn');
+      const rowTrigger = document.getElementById('row-txn-1042');
+      const batchModal = document.getElementById('batch-run-modal');
+      const runReconBtn = document.getElementById('run-recon-btn');
+      const closeBatchModalBtn = document.getElementById('close-batch-modal');
+
+      if (closeDrawerBtn && drawer) {
+        closeDrawerBtn.addEventListener('click', () => {
+          drawer.classList.add('translate-x-full');
+        });
+      }
+
+      if (rowTrigger && drawer) {
+        rowTrigger.addEventListener('click', () => {
+          drawer.classList.remove('translate-x-full');
+        });
+      }
+
+      if (runReconBtn && batchModal) {
+        runReconBtn.addEventListener('click', () => {
+          batchModal.classList.remove('hidden');
+        });
+      }
+
+      if (closeBatchModalBtn && batchModal) {
+        closeBatchModalBtn.addEventListener('click', () => {
+          batchModal.classList.add('hidden');
+        });
+      }
+    });
+
+    function selectRow(rowId) {
+      document.querySelectorAll('.table-row-item').forEach(el => {
+        el.classList.remove('bg-surface-container-low', 'border-l-4', 'border-error');
+      });
+      const target = document.getElementById(rowId);
+      if (target) {
+        target.classList.add('bg-surface-container-low');
+      }
+      const drawer = document.getElementById('investigation-drawer');
+      if (drawer) drawer.classList.remove('translate-x-full');
+    }
+  </script>
+<!-- Workspace Top Controls Section -->
+<div class="px-space-xl pt-space-lg pb-space-base flex flex-col gap-space-base bg-surface-container-lowest shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-on-surface"><h1 class="font-headline-lg text-headline-lg font-semibold tracking-tight">Reconciliation</h1><span class="inline-flex items-center px-space-xs py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">Production Batch #RUN-0007</span><span class="inline-flex items-center px-space-xs py-0.5 rounded text-label-sm font-label-sm bg-surface-container-low text-secondary border border-outline-variant/30 font-medium">Synthetic benchmark — demonstration dataset</span></div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Compare payment and settlement records across the selected batch.</p>
+</div>
+<!-- Action Toolbar -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Dataset Selector -->
+<div class="relative inline-flex items-center">
+<button class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low hover:bg-surface-container text-on-surface rounded text-body-sm font-body-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-secondary text-[18px]">dataset</span>
+<span class="font-semibold text-on-surface">Merchant Settlement Demo — September 2026</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+</div>
+<!-- Date Range -->
+<div class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-lowest text-on-surface-variant rounded text-mono-num-sm font-mono-num-sm shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">date_range</span>
+<span class="text-on-surface">01 Sep 2026 – 04 Sep 2026</span>
+</div>
+<!-- Run Reconciliation CTA -->
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-all shadow-sm active:scale-[0.98]" id="run-recon-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="">Run Reconciliation</span>
+</button>
+</div>
+</div>
+<!-- Secondary Utility Filter Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm flex-1">
+<!-- Search bar -->
+<div class="relative min-w-[260px] max-w-sm flex-1">
+<span class="absolute left-2.5 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-9 pr-space-sm py-space-xs rounded bg-surface-container-lowest text-on-surface text-body-sm font-body-sm placeholder:text-outline outline-none focus:bg-surface-container-low transition-all" placeholder="Search transaction ID, order ref..." type="text">
+</div>
+<!-- Status Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest text-on-surface py-space-xs pl-space-sm pr-7 rounded text-body-sm font-body-sm cursor-pointer outline-none shadow-sm">
+<option>All Statuses (100)</option>
+<option>Matched (93)</option>
+<option>Partial (4)</option>
+<option>Unresolved (3)</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px] pointer-events-none">arrow_drop_down</span>
+</div>
+<!-- Exception Filter -->
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest text-on-surface py-space-xs pl-space-sm pr-7 rounded text-body-sm font-body-sm cursor-pointer outline-none shadow-sm">
+<option>All Exceptions</option>
+<option>Amount Mismatch (2)</option>
+<option>Missing Settlement (1)</option>
+<option>Duplicate Settlement (2)</option>
+<option>Fee Discrepancy (1)</option>
+<option>Timing Discrepancy (1)</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px] pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<!-- Quick View Options -->
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<button class="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface" title="Compact View">
+<span class="material-symbols-outlined text-[18px]">density_small</span>
+</button>
+<button class="p-1 rounded bg-surface-container-low text-primary" title="Comfortable View">
+<span class="material-symbols-outlined text-[18px]">density_medium</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Canvas Container -->
+<div class="p-space-xl flex flex-col gap-space-lg">
+<!-- KPI Summary Row: 5 Unified Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-sm">
+<!-- Card 1: Records -->
+<div class="p-space-base rounded-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Records</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">receipt_long</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-mono-num-lg text-mono-num-lg text-on-surface">100</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">Batch #RUN-0007</p>
+</div>
+</div>
+<!-- Card 2: Matched -->
+<div class="p-space-base rounded-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Matched</span>
+<span class="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-secondary font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +3.2%
+          </span>
+</div>
+<div class="mt-space-sm">
+<div class="font-mono-num-lg text-mono-num-lg text-on-surface flex items-center gap-space-xs">
+<span class="">93</span>
+<span class="w-2 h-2 rounded-full bg-[#10b981]"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">93.0% auto-cleared</p>
+</div>
+</div>
+<!-- Card 3: Partial -->
+<div class="p-space-base rounded-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Partial Variance</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-[#b45309] font-medium">Under Review</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-mono-num-lg text-mono-num-lg text-on-surface flex items-center gap-space-xs">
+<span class="">4</span>
+<span class="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">4.0% variance</p>
+</div>
+</div>
+<!-- Card 4: Unresolved -->
+<div class="p-space-base rounded-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Unresolved</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-error-container text-on-error-container font-medium">Critical (3)</span>
+</div>
+<div class="mt-space-sm">
+<div class="font-mono-num-lg text-mono-num-lg text-error flex items-center gap-space-xs">
+<span class="">3</span>
+<span class="w-2 h-2 rounded-full bg-error"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-2xs">3.0% flagged for ops</p>
+</div>
+</div>
+<!-- Card 5: Match Rate -->
+<div class="p-space-base rounded-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Match Rate</span>
+<span class="font-mono-num-sm text-mono-num-sm text-secondary">Target ≥ 90%</span>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline justify-between">
+<span class="font-mono-num-lg text-mono-num-lg text-on-surface">93.0%</span>
+<span class="font-label-sm text-label-sm text-[#059669] font-medium">Surpassed</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full mt-space-xs overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 93%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust & Transparency Card -->
+<div class="p-space-md rounded-lg bg-surface-container-low shadow-sm flex items-start gap-space-md"><div class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5"><span class="material-symbols-outlined text-[20px]">verified_user</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Automated Settlement Governance</span><p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs leading-relaxed"><strong class="text-on-surface font-semibold">Reconciliation Logic:</strong> Transactions are evaluated using multi-source identifiers, fees, and settlement windows. Uncertain records are never force-matched. Every calculation preserves an unalterable forensic audit trail.</p></div></div>
+<!-- Primary Table Card Wrapper -->
+<div class="rounded-lg bg-surface-container-lowest shadow-sm overflow-hidden flex flex-col">
+<!-- Table Filter Bar & Tab Headers -->
+<div class="p-space-base flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Reconciliation Results</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">100 payment and settlement records evaluated in current run.</p>
+</div>
+<div class="flex flex-wrap items-center gap-space-sm">
+<!-- Filter Tabs -->
+<div class="flex items-center p-1 bg-surface-container-low rounded-lg gap-1">
+<button class="px-space-sm py-1 rounded font-label-md text-label-md bg-surface-container-lowest text-on-surface shadow-xs">All (100)</button>
+<button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface">Matched (93)</button>
+<button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface">Partial (4)</button>
+<button class="px-space-sm py-1 rounded font-label-md text-label-md text-on-surface-variant hover:text-on-surface">Unresolved (3)</button>
+</div>
+<!-- Export and Column actions -->
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-space-2xs px-space-sm py-1.5 rounded bg-surface-container-low hover:bg-surface-container text-on-surface text-label-md font-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span class="">Export CSV</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" title="Column Configuration" type="button">
+<span class="material-symbols-outlined text-[18px]">view_column</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm select-none">
+<th class="py-space-sm px-space-base font-semibold">Transaction ID</th>
+<th class="py-space-sm px-space-base font-semibold">Payment Date</th>
+<th class="py-space-sm px-space-base font-semibold text-right">Payment Amount</th>
+<th class="py-space-sm px-space-base font-semibold text-right">Settlement Amount</th>
+<th class="py-space-sm px-space-base font-semibold text-right">Expected Net</th>
+<th class="py-space-sm px-space-base font-semibold text-right">Difference</th>
+<th class="py-space-sm px-space-base font-semibold text-center">Status</th>
+<th class="py-space-sm px-space-base font-semibold">Confidence</th>
+<th class="py-space-sm px-space-base font-semibold">Exception Category</th>
+<th class="py-space-sm px-space-base font-semibold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm text-on-surface">
+<!-- Row 1: TXN_1001 -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1001')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1001</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">04 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹5,000.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹4,800.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹4,800.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-secondary font-medium">₹0.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#ecfdf5] text-[#065f46] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> MATCHED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#10b981] rounded-full" style="width: 98%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface font-medium">98%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base text-on-surface-variant font-mono-num-sm">—</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">View</button>
+</td>
+</tr>
+<!-- Row 2: TXN_1042 (Selected / Unresolved / Highlighted) -->
+<tr class="table-row-item bg-surface-container-low border-l-4 border-error transition-colors cursor-pointer" id="row-txn-1042">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-bold flex items-center gap-1">
+<span class="">TXN_1042</span>
+<span class="material-symbols-outlined text-error text-[16px]">priority_high</span>
+</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">04 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right font-medium">₹4,500.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right font-medium">₹4,320.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹4,500.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-error font-bold">₹180.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> UNRESOLVED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 42%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-error font-bold">42%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-error-container/50 text-error font-medium">Amount mismatch</span>
+</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="px-2 py-1 rounded bg-error text-on-error font-label-sm text-label-sm font-semibold shadow-xs hover:bg-error/90" type="button">Investigate</button>
+</td>
+</tr>
+<!-- Row 3: TXN_1078 (Unresolved - Missing Settlement) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1078')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1078</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">04 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹7,800.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">—</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹7,800.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-error font-semibold">₹7,800.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> UNRESOLVED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 38%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-error font-medium">38%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-error-container/50 text-error font-medium">Missing settlement</span>
+</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-error hover:underline font-label-sm text-label-sm" type="button">Investigate</button>
+</td>
+</tr>
+<!-- Row 4: TXN_1091 (Matched) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1091')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1091</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">03 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹3,250.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹3,250.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹3,250.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-secondary font-medium">₹0.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#ecfdf5] text-[#065f46] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> MATCHED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#10b981] rounded-full" style="width: 99%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface font-medium">99%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base text-on-surface-variant font-mono-num-sm">—</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">View</button>
+</td>
+</tr>
+<!-- Row 5: TXN_1015 (Partial - Fee discrepancy) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1015')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1015</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">03 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹12,400.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹12,152.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹12,152.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-[#b45309] font-medium">₹248.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#fffbeb] text-[#92400e] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span> PARTIAL
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#f59e0b] rounded-full" style="width: 71%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-[#92400e] font-medium">71%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-[#fef3c7] text-[#92400e] font-medium">Fee discrepancy</span>
+</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">Review</button>
+</td>
+</tr>
+<!-- Row 6: TXN_1033 (Unresolved - Amount mismatch) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1033')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1033</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">03 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹5,600.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹5,100.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹5,600.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-error font-semibold">₹500.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-error-container text-on-error-container font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> UNRESOLVED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 48%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-error font-medium">48%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-error-container/50 text-error font-medium">Amount mismatch</span>
+</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-error hover:underline font-label-sm text-label-sm" type="button">Investigate</button>
+</td>
+</tr>
+<!-- Row 7: TXN_1056 (Matched) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1056')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1056</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">02 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹1,850.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹1,850.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹1,850.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-secondary font-medium">₹0.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#ecfdf5] text-[#065f46] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> MATCHED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#10b981] rounded-full" style="width: 97%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface font-medium">97%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base text-on-surface-variant font-mono-num-sm">—</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">View</button>
+</td>
+</tr>
+<!-- Row 8: TXN_1064 (Partial - Timing Discrepancy) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1064')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1064</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">02 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹9,200.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹8,920.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹9,200.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-[#b45309] font-semibold">₹280.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#fffbeb] text-[#92400e] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span> PARTIAL
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#f59e0b] rounded-full" style="width: 64%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-[#92400e] font-medium">64%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-[#fef3c7] text-[#92400e] font-medium">Timing discrepancy</span>
+</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">Review</button>
+</td>
+</tr>
+<!-- Row 9: TXN_1082 (Matched) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1082')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1082</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">01 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹6,400.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹6,400.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹6,400.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-secondary font-medium">₹0.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#ecfdf5] text-[#065f46] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span> MATCHED
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#10b981] rounded-full" style="width: 95%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface font-medium">95%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base text-on-surface-variant font-mono-num-sm">—</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">View</button>
+</td>
+</tr>
+<!-- Row 10: TXN_1020 (Partial - Duplicate Settlement) -->
+<tr class="table-row-item hover:bg-surface-container-low/50 transition-colors cursor-pointer" onclick="selectRow('row-txn-1020')">
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">TXN_1020</td>
+<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">01 Sep 2026</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹14,500.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">₹14,500.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">₹14,500.00</td>
+<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-[#b45309] font-medium">₹0.00</td>
+<td class="py-space-sm px-space-base text-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm bg-[#fffbeb] text-[#92400e] font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span> PARTIAL
+                </span>
+</td>
+<td class="py-space-sm px-space-base">
+<div class="flex items-center gap-space-xs">
+<div class="w-16 h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-[#f59e0b] rounded-full" style="width: 79%;"></div>
+</div>
+<span class="font-mono-num-sm text-mono-num-sm text-[#92400e] font-medium">79%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-base">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm bg-[#fef3c7] text-[#92400e] font-medium">Duplicate settlement</span>
+</td>
+<td class="py-space-sm px-space-base text-right">
+<button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">Review</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="p-space-base flex flex-col sm:flex-row items-center justify-between gap-space-sm bg-surface-container-low/40">
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface-variant">
+          Showing <strong class="text-on-surface font-semibold">1</strong> to <strong class="text-on-surface font-semibold">10</strong> of <strong class="text-on-surface font-semibold">100</strong> records
+        </span>
+<div class="flex items-center gap-space-xs">
+<button class="p-1.5 rounded bg-surface-container-lowest text-outline-variant cursor-not-allowed" disabled="" title="Previous Page" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-space-sm py-1 font-mono-num-sm text-mono-num-sm text-on-surface font-semibold bg-surface-container-lowest rounded shadow-xs">
+            1 of 10
+          </span>
+<button class="p-1.5 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors" title="Next Page" type="button">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Slide-Over Investigation Panel (Drawer for Selected TXN_1042) -->
+<aside class="fixed top-14 right-0 bottom-0 w-full max-w-2xl bg-surface-container-lowest shadow-2xl z-50 flex flex-col transform transition-transform duration-300 ease-in-out" id="investigation-drawer">
+<!-- Panel Header -->
+<div class="p-space-lg flex items-center justify-between bg-surface-container-low">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-mono-num-lg text-mono-num-lg font-bold text-on-surface">TXN_1042</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-label-sm font-label-sm bg-error-container text-on-error-container font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> UNRESOLVED
+          </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-mono-num-sm">
+            42% Match Confidence
+          </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Order Ref: ORD_998124 • Merchant: CloudKitchens India Ltd.</span>
+</div>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="close-drawer-btn" title="Close Panel" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+</div>
+<!-- Panel Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-space-lg flex flex-col gap-space-lg">
+<!-- AI Controller Analysis Card -->
+<div class="p-space-base rounded-lg bg-surface-container-low shadow-sm flex flex-col gap-space-sm relative overflow-hidden"><div class="flex items-center justify-between"><div class="flex items-center gap-space-xs"><div class="w-6 h-6 rounded bg-tertiary-container text-on-tertiary-container flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">auto_awesome</span></div><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">AI Controller Analysis</span></div><span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-secondary font-medium uppercase tracking-wider">Evidence-based</span></div><div class="grid grid-cols-2 gap-space-sm py-space-xs"><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">System Status</span><span class="font-headline-sm text-headline-sm text-error font-semibold">Unable to Reconcile Confidently</span></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Confidence Assessment</span><span class="font-headline-sm text-headline-sm text-on-surface font-semibold">42% (Safety Hold)</span></div></div><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Payment gateway record confirms merchant collected <strong class="text-on-surface font-semibold">₹4,500.00</strong>, whereas corresponding bank nodal feed credits <strong class="text-on-surface font-semibold">₹4,320.00</strong>. No contractual MDR fee or pending dispute hold matches this trace. Under automated settlement policy, this discrepancy is deliberately flagged as a safety state rather than force-reconciled. Unexplained net delta is <strong class="text-error font-semibold">₹180.00</strong>.</p><div class="mt-space-2xs p-space-sm bg-surface-container-lowest rounded text-body-sm font-body-sm text-on-surface flex items-start gap-space-xs"><span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">gavel</span><span class=""><strong class="font-semibold">Recommended Controller Action:</strong> Review settlement adjustment records or request gateway fee recalculation. Escalate to Bank Ops if unverified within 24h.</span></div></div>
+<!-- Evidence Comparison Grid (Side-by-Side Dual Ledger) -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Evidence Ledger Comparison</span>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Panel A: Gateway Record -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Payment (Gateway)
+              </span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface-variant">PAY_1042</span>
+</div>
+<div class="space-y-space-xs text-body-sm font-body-sm">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Amount</span>
+<span class="font-mono-num-md text-mono-num-md font-semibold text-on-surface">₹4,500.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Captured At</span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface">04 Sep 2026, 14:32 IST</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">State</span>
+<span class="font-label-sm text-label-sm font-semibold text-[#065f46]">Captured</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Payment Method</span>
+<span class="text-on-surface">UPI / HDFC NetBanking</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Customer VPA</span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface">cust_9921@okaxis</span>
+</div>
+</div>
+</div>
+<!-- Panel B: Settlement Feed -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Settlement (Bank Fed)
+              </span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface-variant">SET_9811</span>
+</div>
+<div class="space-y-space-xs text-body-sm font-body-sm">
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Gross Amount</span>
+<span class="font-mono-num-md text-mono-num-md font-semibold text-on-surface">₹4,320.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Bank Fee / Tax</span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface">₹0.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Refund Reversals</span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface">₹0.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Net Settled</span>
+<span class="font-mono-num-md text-mono-num-md font-bold text-error">₹4,320.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant">Bank UTR</span>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface">HDFC29840192</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Variance Breakdown Formula Card -->
+<div class="p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Reconciliation Variance Breakdown</span>
+<div class="flex items-center justify-between py-space-xs text-body-md font-body-md">
+<span class="text-on-surface-variant">Expected Net Receivable:</span>
+<span class="font-mono-num-md text-mono-num-md text-on-surface font-semibold">₹4,500.00</span>
+</div>
+<div class="flex items-center justify-between py-space-xs text-body-md font-body-md">
+<span class="text-on-surface-variant">Actual Settled to Account:</span>
+<span class="font-mono-num-md text-mono-num-md text-on-surface font-semibold">₹4,320.00</span>
+</div>
+<div class="flex items-center justify-between py-space-sm text-headline-sm font-headline-sm font-bold bg-error-container/30 px-space-sm rounded">
+<span class="text-error">Unexplained Delta Variance:</span>
+<span class="font-mono-num-lg text-mono-num-lg text-error">₹180.00</span>
+</div>
+</div>
+</div>
+<!-- Panel Footer Action Buttons -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between gap-space-sm">
+<button class="px-space-md py-space-xs rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors shadow-xs" type="button">
+        Manual Match
+      </button>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-space-xs rounded bg-surface-container-lowest text-error hover:bg-error-container font-label-md text-label-md transition-colors shadow-xs" type="button">
+          Escalate to Bank Ops
+        </button>
+<button class="px-space-md py-space-xs rounded bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md transition-all shadow-sm" type="button">
+          Accept Adjustment
+        </button>
+</div>
+</div>
+</aside>
+<!-- Interactive Batch Run Modal (Triggered by 'Run Reconciliation' button) -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center p-space-md bg-primary/40 backdrop-blur-xs" id="batch-run-modal">
+<div class="w-full max-w-lg rounded-xl bg-surface-container-lowest shadow-2xl overflow-hidden flex flex-col">
+<!-- Modal Header -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span>
+</div>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Running Reconciliation Engine</h3>
+<span class="font-mono-num-sm text-mono-num-sm text-on-surface-variant">Batch #RUN-0008</span>
+</div>
+</div>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" id="close-batch-modal" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-space-xl flex flex-col gap-space-lg"><div class="flex flex-col gap-space-xs"><div class="flex justify-between items-center text-body-sm font-body-sm"><span class="text-on-surface font-medium">100 of 100 records processed</span><span class="font-mono-num-sm text-mono-num-sm text-[#059669] font-bold">100% Completed</span></div><div class="w-full h-2 rounded-full bg-surface-container overflow-hidden"><div class="h-full bg-[#10b981] rounded-full transition-all duration-300" style="width: 100%;"></div></div></div><div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between text-mono-num-sm"><span class="text-on-surface font-medium">100 records processed</span><span class="text-outline-variant">•</span><span class="text-[#059669] font-semibold">93 matched</span><span class="text-outline-variant">•</span><span class="text-[#b45309] font-semibold">4 partial</span><span class="text-outline-variant">•</span><span class="text-error font-semibold">3 unresolved</span><span class="text-outline-variant">•</span><span class="text-primary font-bold">93.0% match rate</span></div><div class="space-y-space-sm"><div class="flex items-center gap-space-sm text-body-sm font-body-sm text-on-surface"><span class="material-symbols-outlined text-[#10b981] text-[18px]">check_circle</span><span class="">Loading records &amp; transaction batches</span></div><div class="flex items-center gap-space-sm text-body-sm font-body-sm text-on-surface"><span class="material-symbols-outlined text-[#10b981] text-[18px]">check_circle</span><span class="">Matching identifiers (UTR &amp; Order IDs)</span></div><div class="flex items-center gap-space-sm text-body-sm font-body-sm text-on-surface"><span class="material-symbols-outlined text-[#10b981] text-[18px]">check_circle</span><span class="">Validating relationships (gross, fees, refunds)</span></div><div class="flex items-center gap-space-sm text-body-sm font-body-sm text-on-surface"><span class="material-symbols-outlined text-[#10b981] text-[18px]">check_circle</span><span class="">Analyzing exceptions &amp; anomaly root causes</span></div><div class="flex items-center gap-space-sm text-body-sm font-body-sm text-on-surface"><span class="material-symbols-outlined text-[#10b981] text-[18px]">check_circle</span><span class="">Finalizing immutable audit trail entries</span></div></div></div>
+<!-- Modal Footer -->
+<div class="p-space-md bg-surface-container-low flex justify-end gap-space-sm">
+<button class="px-space-md py-space-xs rounded bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors shadow-xs" onclick="document.getElementById('batch-run-modal').classList.add('hidden')" type="button">
+          Run in Background
+        </button>
+</div>
+</div>
+</div>
+</div></main></div>
+
+
+<script src="auth.js"></script>
+<script src="api.js"></script>
+<script>
+(function() {
+  if(!Auth || !Auth.requireAuth()) return;
+  var loader = document.createElement('div');
+  loader.id = 'api-loader';
+  loader.innerHTML = '<div style="position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6);z-index:9999;animation:loaderPulse 1.5s ease-in-out infinite"></div><style>@keyframes loaderPulse{0%,100%{opacity:1}50%{opacity:.4}}</style>';
+  document.body.appendChild(loader);
+  function removeLoader(){var l=document.getElementById('api-loader');if(l)l.remove();}
+  function showTableLoading(){
+    var tbody=document.querySelector('tbody.divide-y');
+    if(!tbody) return;
+    var rows='';
+    for(var i=0;i<5;i++){
+      rows+='<tr class="animate-pulse"><td class="py-space-sm px-space-base"><div class="h-4 bg-surface-container rounded w-20"></div></td><td class="py-space-sm px-space-base"><div class="h-4 bg-surface-container rounded w-24"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-16 ml-auto"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-16 ml-auto"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-16 ml-auto"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-14 ml-auto"></div></td><td class="py-space-sm px-space-base text-center"><div class="h-5 bg-surface-container rounded w-16 mx-auto"></div></td><td class="py-space-sm px-space-base"><div class="h-4 bg-surface-container rounded w-20"></div></td><td class="py-space-sm px-space-base"><div class="h-5 bg-surface-container rounded w-20"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-14 ml-auto"></div></td></tr>';
+    }
+    tbody.innerHTML=rows;
+  }
+  function setText(sel,txt){var el=document.querySelector(sel);if(el)el.textContent=txt;}
+  var currentPage=1,pageLimit=10,currentRunId=null;
+
+  function renderRow(r,idx){
+    var diff=r.difference!=null?r.difference:((r.payment_amount||0)-(r.actual_amount||0));
+    var statusClass=r.status==='MATCHED'?'bg-[#ecfdf5] text-[#065f46]':r.status==='PARTIAL'?'bg-[#fffbeb] text-[#92400e]':'bg-error-container text-on-error-container';
+    var dotClass=r.status==='MATCHED'?'bg-[#10b981]':r.status==='PARTIAL'?'bg-[#f59e0b]':'bg-error';
+    var diffClass=diff===0?'text-secondary':r.status==='UNRESOLVED'?'text-error font-bold':'text-[#b45309] font-medium';
+    var excLabel=r.exception_type||'—';
+    var excClass=r.status==='UNRESOLVED'?'bg-error-container/50 text-error':r.status==='PARTIAL'?'bg-[#fef3c7] text-[#92400e]':'text-on-surface-variant';
+    var rowClass=r.status==='UNRESOLVED'?'bg-surface-container-low border-l-4 border-error':'hover:bg-surface-container-low/50';
+    return '<tr class="table-row-item '+rowClass+' transition-colors cursor-pointer" onclick="selectRow(\'row-'+r.transaction_id+'\')">'
+    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">'+r.transaction_id+'</td>'
+    +'<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">'+fmt.date(r.payment_date)+'</td>'
+    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">'+fmt.currencyFull(r.payment_amount)+'</td>'
+    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">'+(r.actual_amount!=null?fmt.currencyFull(r.actual_amount):'<span class="text-on-surface-variant">—</span>')+'</td>'
+    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">'+fmt.currencyFull(r.expected_amount||r.payment_amount)+'</td>'
+    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right '+diffClass+'">'+fmt.currencyFull(Math.abs(diff))+'</td>'
+    +'<td class="py-space-sm px-space-base text-center"><span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm '+statusClass+' font-semibold"><span class="w-1.5 h-1.5 rounded-full '+dotClass+'"></span> '+r.status+'</span></td>'
+    +'<td class="py-space-sm px-space-base">'+fmt.confidenceBar(r.confidence||0)+'</td>'
+    +'<td class="py-space-sm px-space-base"><span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm '+excClass+' font-medium">'+excLabel+'</span></td>'
+    +'<td class="py-space-sm px-space-base text-right"><button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">'+(r.status==='UNRESOLVED'?'Investigate':'View')+'</button></td>'
+    +'</tr>';
+  }
+
+  async function loadReconciliation(){
+    try{
+      var resp=await api.getReconciliationRuns();
+      var runs=resp.runs||resp;
+      var run=Array.isArray(runs)?runs[0]:runs;
+      if(!run) return;
+      currentRunId=run.id;
+      setText('.font-mono-num-lg', run.total_records||run.records||100);
+      setText('[data-kpi="matched-count"]', run.matched_count||run.matched||0);
+      setText('[data-kpi="partial-count"]', run.partial_count||run.partial||0);
+      setText('[data-kpi="unresolved-count"]', run.unresolved_count||run.unresolved||0);
+      setText('[data-kpi="match-rate"]', fmt.percent(run.match_rate));
+
+      var results=await api.getReconciliationResults(currentRunId,{page:currentPage,limit:pageLimit});
+      var records=results.data||results.results||results.records||results;
+      if(!Array.isArray(records)) records=[];
+      var total=results.total||results.pagination?.total||records.length;
+      var totalPages=Math.ceil(total/pageLimit);
+
+      var tbody=document.querySelector('tbody.divide-y');
+      if(tbody) tbody.innerHTML=records.map(renderRow).join('');
+
+      var pagInfo=document.querySelector('.font-mono-num-sm.text-mono-num-sm');
+      if(pagInfo) pagInfo.innerHTML='Showing <strong class="text-on-surface font-semibold">'+((currentPage-1)*pageLimit+1)+'</strong> to <strong class="text-on-surface font-semibold">'+Math.min(currentPage*pageLimit,total)+'</strong> of <strong class="text-on-surface font-semibold">'+total+'</strong> records';
+
+      var pageInfo=document.querySelector('span.font-mono-num-sm.text-mono-num-sm.text-on-surface.font-semibold');
+      if(pageInfo) pageInfo.textContent=currentPage+' of '+totalPages;
+    }catch(e){console.warn('Recon API:',e.message);}
+    removeLoader();
+  }
+
+  var runBtn=document.getElementById('run-recon-btn');
+  if(runBtn){
+    runBtn.addEventListener('click',async function(){
+      var modal=document.getElementById('batch-run-modal');
+      if(modal) modal.classList.remove('hidden');
+      try{await api.runReconciliation();}catch(e){console.warn(e.message);}
+      setTimeout(function(){loadReconciliation();},500);
+    });
+  }
+
+  var selects=document.querySelectorAll('select');
+  if(selects[0]){
+    selects[0].addEventListener('change',async function(){
+      if(!currentRunId) return;
+      var statusMap={'All Statuses (100)':'','Matched (93)':'MATCHED','Partial (4)':'PARTIAL','Unresolved (3)':'UNRESOLVED'};
+      var params={page:currentPage,limit:pageLimit};
+      var val=statusMap[this.value];
+      if(val) params.status=val;
+      try{
+        var results=await api.getReconciliationResults(currentRunId,params);
+        var records=results.data||results.results||results.records||results;
+        if(!Array.isArray(records)) records=[];
+        var total=results.total||results.pagination?.total||records.length;
+        var totalPages=Math.ceil(total/pageLimit);
+        var tbody=document.querySelector('tbody.divide-y');
+        if(tbody) tbody.innerHTML=records.map(renderRow).join('');
+        var pagInfo=document.querySelector('.font-mono-num-sm.text-mono-num-sm');
+        if(pagInfo) pagInfo.innerHTML='Showing <strong class="text-on-surface font-semibold">'+((currentPage-1)*pageLimit+1)+'</strong> to <strong class="text-on-surface font-semibold">'+Math.min(currentPage*pageLimit,total)+'</strong> of <strong class="text-on-surface font-semibold">'+total+'</strong> records';
+      }catch(e){console.warn(e.message);}
+    });
+  }
+
+  var nextBtn=document.querySelectorAll('button[title="Next Page"]');
+  if(nextBtn[0]){
+    nextBtn[0].addEventListener('click',function(){
+      currentPage++;loadReconciliation();
+    });
+  }
+  var prevBtn=document.querySelectorAll('button[title="Previous Page"]');
+  if(prevBtn[0]){
+    prevBtn[0].addEventListener('click',function(){
+      if(currentPage>1){currentPage--;loadReconciliation();}
+    });
+  }
+
+  showTableLoading();
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadReconciliation);
+  else loadReconciliation();
+})();
+</script>
+</body></html>
