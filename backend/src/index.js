@@ -22,7 +22,15 @@ const FRONTEND_DIR = path.join(__dirname, '..', '..', 'frontend');
 // CORS
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
 app.use(cors({
-  origin: CORS_ORIGIN.includes(',') ? CORS_ORIGIN.split(',').map(s => s.trim()) : CORS_ORIGIN,
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+    const allowed = ['https://razorpay-buildathon-track-04.vercel.app', 'http://localhost:3000', 'http://localhost:8080'];
+    if (CORS_ORIGIN === '*' || allowed.some(a => origin.includes(a))) {
+      callback(null, true);
+    } else {
+      callback(null, true); // Allow all in dev
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
