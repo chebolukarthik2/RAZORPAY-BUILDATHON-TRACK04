@@ -22,7 +22,7 @@ const FRONTEND_DIR = path.join(__dirname, '..', '..', 'frontend');
 // CORS
 const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
 app.use(cors({
-  origin: CORS_ORIGIN,
+  origin: CORS_ORIGIN.includes(',') ? CORS_ORIGIN.split(',').map(s => s.trim()) : CORS_ORIGIN,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));

@@ -1,5 +1,5 @@
 // ReconAI Frontend API Client
-const API_BASE = window.RECONAI_API_URL || (window.location.origin + '/api');
+const API_BASE = window.RECONAI_API_URL || (typeof window !== 'undefined' && window.location.origin + '/api') || 'http://localhost:3000/api';
 
 const api = {
   async fetch(endpoint, options = {}) {
