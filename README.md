@@ -62,18 +62,24 @@ cd backend
 npm run seed
 ```
 
-### 5. Start Servers
+### 5. Start Server
 
 ```bash
-# Terminal 1 - Backend (port 3000)
-cd backend
-npm start
-
-# Terminal 2 - Frontend (port 8080)
 npm start
 ```
 
-Open **http://localhost:8080** in your browser.
+Open **http://localhost:3000** in your browser.
+
+## Deploy to Render
+
+1. Push code to GitHub
+2. Go to [render.com](https://render.com) → **New Web Service**
+3. Select your repo
+4. Settings:
+   - **Build Command:** `npm install --prefix backend`
+   - **Start Command:** `npm start`
+5. Add environment variables (see `.env.example`)
+6. Deploy → Your app is live at `https://your-app.onrender.com`
 
 ## Features
 
