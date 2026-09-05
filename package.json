@@ -1,8 +1,8 @@
 {
   "name": "reconai-finance-controller",
   "version": "1.0.0",
-  "description": "ReconAI - AI Finance Controller for payment-settlement reconciliation",
   "type": "module",
+  "description": "ReconAI - AI Finance Controller for payment-settlement reconciliation",
   "scripts": {
     "start": "node backend/src/index.js",
     "dev": "node --watch backend/src/index.js",
@@ -11,5 +11,14 @@
   },
   "keywords": ["reconciliation", "finance", "payments", "settlements", "ai", "supabase"],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "@supabase/supabase-js": "^2.47.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.0",
+    "express-validator": "^7.2.0",
+    "multer": "^1.4.5-lts.1"
+  }
 }
