@@ -8,11 +8,18 @@ function initGemini() {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     console.warn('GEMINI_API_KEY not set. AI features will be unavailable.');
+    console.warn('Available env vars:', Object.keys(process.env).filter(k => k.includes('GEMINI') || k.includes('SUPABASE') || k.includes('API')).join(', '));
     return false;
   }
-  genAI = new GoogleGenerativeAI(apiKey);
-  model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
-  return true;
+  try {
+    genAI = new GoogleGenerativeAI(apiKey);
+    model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    console.log('Gemini AI initialized successfully');
+    return true;
+  } catch (err) {
+    console.error('Failed to initialize Gemini:', err.message);
+    return false;
+  }
 }
 
 function validateAIResponse(response, requiredFields) {
@@ -87,7 +94,7 @@ Rules:
       recommended_action: 'Review the transaction manually.',
     };
   } catch (error) {
-    console.error('AI analysis failed:', error.message);
+    console.error('AI analysis failed:', error.message, error.stack);
     return {
       status: 'unavailable',
       classification: exceptionData.exception_type || 'Unknown',
@@ -153,7 +160,7 @@ Rules:
       implication: 'Review the reconciliation data for operational improvements.',
     };
   } catch (error) {
-    console.error('AI batch insight failed:', error.message);
+    console.error('AI batch insight failed:', error.message, error.stack);
     return {
       status: 'unavailable',
       finding: 'AI insight unavailable due to service error.',
@@ -211,7 +218,7 @@ Rules:
       sources: ['Reconciliation Database', 'Deterministic Analysis'],
     };
   } catch (error) {
-    console.error('AI Q&A failed:', error.message);
+    console.error('AI Q&A failed:', error.message, error.stack);
     return {
       status: 'unavailable',
       answer: 'AI Q&A is temporarily unavailable. Please try again later.',

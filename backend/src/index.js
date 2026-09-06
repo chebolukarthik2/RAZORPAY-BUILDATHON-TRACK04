@@ -59,7 +59,12 @@ app.use('/api/ai', aiRouter);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    gemini: process.env.GEMINI_API_KEY ? 'configured' : 'NOT configured',
+    supabase: process.env.SUPABASE_URL ? 'configured' : 'NOT configured',
+  });
 });
 
 // Frontend static files

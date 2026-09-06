@@ -628,22 +628,21 @@
       if(fin.netSettled!==undefined) setText('.font-mono-num-lg.text-\\[\\#065f46\\].mt-space-xs', fmt.currency(fin.netSettled));
       if(fin.fees!==undefined) setText('.font-mono-num-lg.text-primary.mt-space-xs:nth-of-type(1)', fmt.currency(fin.fees));
       var excTotal = 0;
-      Object.keys(excBreakdown).forEach(function(k){ excTotal += (excBreakdown[k]||0); });
+      Object.keys(excBreakdown).forEach(function(k){ excTotal += (excBreakdown[k] && excBreakdown[k].count ? excBreakdown[k].count : 0); });
       setText('.bg-error-container.text-on-error-container.font-semibold', excTotal + ' Flagged');
       var tbody = document.querySelector('tbody.divide-y');
       if(tbody && recentEx.length>0){
         tbody.innerHTML = recentEx.map(function(r){
-          var diff = (r.payment_amount||0)-(r.settlement_amount||0);
+          var diff = r.difference_amount || 0;
           var bc = r.status==='UNRESOLVED'?'border-l-error':'border-l-[#f59e0b]';
           return '<tr class="hover:bg-surface-container-low/40 transition-colors border-l-2 '+bc+'">'
-          +'<td class="py-2.5 px-space-md font-mono-num-md font-semibold text-primary">'+(r.transaction_id||'�')+'</td>'
-          +'<td class="py-2.5 px-space-md font-mono-num-md text-right">'+fmt.currency(r.payment_amount)+'</td>'
-          +'<td class="py-2.5 px-space-md font-mono-num-md text-right text-secondary">'+(r.settlement_amount?fmt.currency(r.settlement_amount):'�')+'</td>'
-          +'<td class="py-2.5 px-space-md font-mono-num-md text-right font-semibold '+(diff>0?'text-error':'text-secondary')+'">'+fmt.currency(diff)+'</td>'
-          +'<td class="py-2.5 px-space-md"><span class="font-medium text-on-surface">'+(r.exception_type||'�')+'</span></td>'
+          +'<td class="py-2.5 px-space-md font-mono-num-md font-semibold text-primary">'+(r.transaction_id||'—')+'</td>'
+          +'<td class="py-2.5 px-space-md font-mono-num-md text-right">'+fmt.currency(diff)+'</td>'
+          +'<td class="py-2.5 px-space-md font-mono-num-md text-right text-secondary">'+(r.priority||'—')+'</td>'
+          +'<td class="py-2.5 px-space-md"><span class="font-medium text-on-surface">'+(r.exception_type||'—')+'</span></td>'
           +'<td class="py-2.5 px-space-md text-center">'+fmt.confidenceBar(r.confidence||0)+'</td>'
           +'<td class="py-2.5 px-space-md">'+fmt.statusBadge(r.status)+'</td>'
-          +'<td class="py-2.5 px-space-md text-right"><button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary hover:bg-surface-container border border-outline-variant/60 rounded transition-colors" type="button">Review</button></td>'
+          +'<td class="py-2.5 px-space-md text-right"><button onclick="window.location.href=\'exceptions.html\'" class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary hover:bg-surface-container border border-outline-variant/60 rounded transition-colors" type="button">Review</button></td>'
           +'</tr>';
         }).join('');
       }
