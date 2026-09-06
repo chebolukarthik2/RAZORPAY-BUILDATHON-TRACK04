@@ -67,6 +67,22 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Debug: test Gemini directly
+app.get('/api/debug/gemini', async (req, res) => {
+  try {
+    const { GoogleGenerativeAI } = await import('@google/generative-ai');
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) return res.json({ error: 'No API key', envKeys: Object.keys(process.env).filter(k => k.includes('GEMINI')) });
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const result = await model.generateContent('Say hello in 5 words');
+    const text = result.response.text();
+    res.json({ success: true, response: text });
+  } catch (err) {
+    res.json({ error: err.message, stack: err.stack });
+  }
+});
+
 // Frontend static files
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
