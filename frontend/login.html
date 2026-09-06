@@ -37,22 +37,28 @@
     <!-- Login Card -->
     <div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 shadow-sm p-space-lg">
       <div class="space-y-space-md">
-        <div class="space-y-space-xs">
+        <!-- Sign In Header -->
+        <div id="signInHeader" class="space-y-space-xs">
           <h1 class="font-headline-md text-headline-md text-primary font-semibold">Sign in to your account</h1>
           <p class="font-body-sm text-body-sm text-secondary">Enter your credentials to access the finance controller dashboard.</p>
         </div>
+        <!-- Sign Up Header (hidden) -->
+        <div id="signUpHeader" class="space-y-space-xs hidden">
+          <h1 class="font-headline-md text-headline-md text-primary font-semibold">Create your account</h1>
+          <p class="font-body-sm text-body-sm text-secondary">Set up your ReconAI finance controller access.</p>
+        </div>
 
-        <!-- Form -->
-        <form id="loginForm" class="space-y-space-md" autocomplete="off">
+        <!-- Sign In Form -->
+        <form id="signInForm" class="space-y-space-md" autocomplete="off">
           <!-- Email -->
           <div class="space-y-space-2xs">
-            <label for="email" class="font-label-md text-label-md text-primary block">Email address</label>
+            <label for="signInEmail" class="font-label-md text-label-md text-primary block">Email address</label>
             <div class="relative">
               <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
                 <span class="material-symbols-outlined text-[18px]">mail</span>
               </div>
               <input
-                id="email"
+                id="signInEmail"
                 type="email"
                 required
                 placeholder="you@company.com"
@@ -63,13 +69,13 @@
 
           <!-- Password -->
           <div class="space-y-space-2xs">
-            <label for="password" class="font-label-md text-label-md text-primary block">Password</label>
+            <label for="signInPassword" class="font-label-md text-label-md text-primary block">Password</label>
             <div class="relative">
               <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
                 <span class="material-symbols-outlined text-[18px]">lock</span>
               </div>
               <input
-                id="password"
+                id="signInPassword"
                 type="password"
                 required
                 placeholder="Enter password"
@@ -87,9 +93,9 @@
           </div>
 
           <!-- Error message -->
-          <div id="errorMessage" class="hidden rounded-lg p-space-sm bg-error-container/30 border border-error/20 text-error font-body-sm text-body-sm flex items-center gap-space-xs">
+          <div id="signInError" class="hidden rounded-lg p-space-sm bg-error-container/30 border border-error/20 text-error font-body-sm text-body-sm flex items-center gap-space-xs">
             <span class="material-symbols-outlined text-[16px]">error</span>
-            <span id="errorText">Invalid credentials. Please try again.</span>
+            <span id="signInErrorText">Invalid credentials. Please try again.</span>
           </div>
 
           <!-- Sign In Button -->
@@ -119,6 +125,118 @@
             <span>Use Demo Account</span>
           </button>
         </form>
+
+        <!-- Sign Up Form (hidden) -->
+        <form id="signUpForm" class="space-y-space-md hidden" autocomplete="off">
+          <!-- Full Name -->
+          <div class="space-y-space-2xs">
+            <label for="signUpName" class="font-label-md text-label-md text-primary block">Full name</label>
+            <div class="relative">
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
+                <span class="material-symbols-outlined text-[18px]">person</span>
+              </div>
+              <input
+                id="signUpName"
+                type="text"
+                required
+                placeholder="John Doe"
+                class="w-full h-10 pl-10 pr-3 bg-surface-container-low rounded-lg border border-outline-variant/60 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-shadow"
+              >
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="space-y-space-2xs">
+            <label for="signUpEmail" class="font-label-md text-label-md text-primary block">Email address</label>
+            <div class="relative">
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
+                <span class="material-symbols-outlined text-[18px]">mail</span>
+              </div>
+              <input
+                id="signUpEmail"
+                type="email"
+                required
+                placeholder="you@company.com"
+                class="w-full h-10 pl-10 pr-3 bg-surface-container-low rounded-lg border border-outline-variant/60 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-shadow"
+              >
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="space-y-space-2xs">
+            <label for="signUpPassword" class="font-label-md text-label-md text-primary block">Password</label>
+            <div class="relative">
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
+                <span class="material-symbols-outlined text-[18px]">lock</span>
+              </div>
+              <input
+                id="signUpPassword"
+                type="password"
+                required
+                minlength="6"
+                placeholder="Min. 6 characters"
+                class="w-full h-10 pl-10 pr-3 bg-surface-container-low rounded-lg border border-outline-variant/60 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-shadow"
+              >
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="space-y-space-2xs">
+            <label for="signUpConfirm" class="font-label-md text-label-md text-primary block">Confirm password</label>
+            <div class="relative">
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none text-secondary">
+                <span class="material-symbols-outlined text-[18px]">lock</span>
+              </div>
+              <input
+                id="signUpConfirm"
+                type="password"
+                required
+                minlength="6"
+                placeholder="Re-enter password"
+                class="w-full h-10 pl-10 pr-3 bg-surface-container-low rounded-lg border border-outline-variant/60 text-body-md font-body-md text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-on-tertiary-container focus:border-transparent transition-shadow"
+              >
+            </div>
+          </div>
+
+          <!-- Error message -->
+          <div id="signUpError" class="hidden rounded-lg p-space-sm bg-error-container/30 border border-error/20 text-error font-body-sm text-body-sm flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-[16px]">error</span>
+            <span id="signUpErrorText"></span>
+          </div>
+
+          <!-- Create Account Button -->
+          <button
+            type="submit"
+            id="signUpBtn"
+            class="w-full h-10 bg-primary hover:bg-primary-container text-on-primary rounded-lg font-label-md text-label-md shadow-sm transition-all active:scale-[0.99] flex items-center justify-center gap-space-xs"
+          >
+            <span class="material-symbols-outlined text-[18px]">person_add</span>
+            <span id="signUpText">Create Account</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="relative flex items-center gap-space-sm py-space-xs">
+            <div class="flex-1 h-px bg-outline-variant/40"></div>
+            <span class="font-label-sm text-label-sm text-secondary">or</span>
+            <div class="flex-1 h-px bg-outline-variant/40"></div>
+          </div>
+
+          <!-- Demo Button (same) -->
+          <button
+            type="button"
+            id="demoBtn2"
+            class="w-full h-10 bg-surface-container-low hover:bg-surface-container text-primary border border-outline-variant/50 rounded-lg font-label-md text-label-md shadow-sm transition-all active:scale-[0.99] flex items-center justify-center gap-space-xs"
+          >
+            <span class="material-symbols-outlined text-[18px] text-tertiary-fixed-dim">science</span>
+            <span>Use Demo Account</span>
+          </button>
+        </form>
+
+        <!-- Toggle Sign In / Sign Up -->
+        <p class="text-center font-body-sm text-body-sm text-secondary">
+          <span id="toggleToSignUp">Don't have an account? <button type="button" class="text-on-tertiary-container font-semibold hover:underline">Sign up</button></span>
+          <span id="toggleToSignIn" class="hidden">Already have an account? <button type="button" class="text-on-tertiary-container font-semibold hover:underline">Sign in</button></span>
+        </p>
       </div>
     </div>
 
@@ -126,20 +244,20 @@
     <div class="bg-surface-container-low rounded-lg p-space-md border border-outline-variant/30 space-y-space-xs">
       <div class="flex items-center gap-space-xs">
         <span class="material-symbols-outlined text-[15px] text-secondary">info</span>
-        <span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">Demo Credentials</span>
+        <span class="font-label-sm text-label-sm font-semibold text-primary uppercase tracking-wider">Quick Start</span>
       </div>
       <div class="grid grid-cols-2 gap-space-sm text-body-sm font-body-sm mt-space-xs">
         <div>
-          <span class="text-secondary block">Email</span>
+          <span class="text-secondary block">Demo Email</span>
           <span class="font-mono-num-sm text-mono-num-sm font-medium text-primary">demo@reconai.app</span>
         </div>
         <div>
-          <span class="text-secondary block">Password</span>
+          <span class="text-secondary block">Demo Password</span>
           <span class="font-mono-num-sm text-mono-num-sm font-medium text-primary">ReconAI@2026</span>
         </div>
       </div>
       <p class="font-body-sm text-body-sm text-secondary pt-space-xs border-t border-outline-variant/20">
-        Accepts any email/password combination for demo purposes.
+        Or create your own account using the Sign Up option above.
       </p>
     </div>
 
@@ -152,68 +270,141 @@
   <script src="auth.js"></script>
   <script>
     (function() {
-      // Redirect if already authenticated
       if (Auth.isAuthenticated()) {
         window.location.href = '/dashboard.html';
         return;
       }
 
-      var emailInput = document.getElementById('email');
-      var passwordInput = document.getElementById('password');
+      // Elements
+      var signInForm = document.getElementById('signInForm');
+      var signUpForm = document.getElementById('signUpForm');
+      var signInHeader = document.getElementById('signInHeader');
+      var signUpHeader = document.getElementById('signUpHeader');
+      var toggleToSignUp = document.getElementById('toggleToSignUp');
+      var toggleToSignIn = document.getElementById('toggleToSignIn');
+
+      // Sign In elements
+      var signInEmail = document.getElementById('signInEmail');
+      var signInPassword = document.getElementById('signInPassword');
       var signInBtn = document.getElementById('signInBtn');
       var signInText = document.getElementById('signInText');
       var demoBtn = document.getElementById('demoBtn');
       var togglePassword = document.getElementById('togglePassword');
       var eyeIcon = document.getElementById('eyeIcon');
-      var errorMessage = document.getElementById('errorMessage');
-      var errorText = document.getElementById('errorText');
-      var form = document.getElementById('loginForm');
+      var signInError = document.getElementById('signInError');
+      var signInErrorText = document.getElementById('signInErrorText');
+
+      // Sign Up elements
+      var signUpName = document.getElementById('signUpName');
+      var signUpEmail = document.getElementById('signUpEmail');
+      var signUpPassword = document.getElementById('signUpPassword');
+      var signUpConfirm = document.getElementById('signUpConfirm');
+      var signUpBtn = document.getElementById('signUpBtn');
+      var signUpText = document.getElementById('signUpText');
+      var signUpError = document.getElementById('signUpError');
+      var signUpErrorText = document.getElementById('signUpErrorText');
+      var demoBtn2 = document.getElementById('demoBtn2');
 
       // Toggle password visibility
       togglePassword.addEventListener('click', function() {
-        var isPassword = passwordInput.type === 'password';
-        passwordInput.type = isPassword ? 'text' : 'password';
+        var isPassword = signInPassword.type === 'password';
+        signInPassword.type = isPassword ? 'text' : 'password';
         eyeIcon.textContent = isPassword ? 'visibility' : 'visibility_off';
       });
 
-      // Fill demo credentials
-      demoBtn.addEventListener('click', function() {
-        emailInput.value = 'demo@reconai.app';
-        passwordInput.value = 'ReconAI@2026';
-        hideError();
-        emailInput.focus();
+      // Switch to Sign Up
+      toggleToSignUp.addEventListener('click', function() {
+        signInForm.classList.add('hidden');
+        signInHeader.classList.add('hidden');
+        signUpForm.classList.remove('hidden');
+        signUpHeader.classList.remove('hidden');
+        toggleToSignUp.classList.add('hidden');
+        toggleToSignIn.classList.remove('hidden');
       });
 
-      // Show error
-      function showError(msg) {
-        errorText.textContent = msg || 'Invalid credentials. Please try again.';
-        errorMessage.classList.remove('hidden');
-      }
+      // Switch to Sign In
+      toggleToSignIn.addEventListener('click', function() {
+        signUpForm.classList.add('hidden');
+        signUpHeader.classList.add('hidden');
+        signInForm.classList.remove('hidden');
+        signInHeader.classList.remove('hidden');
+        toggleToSignIn.classList.add('hidden');
+        toggleToSignUp.classList.remove('hidden');
+      });
 
-      // Hide error
-      function hideError() {
-        errorMessage.classList.add('hidden');
+      // Demo buttons
+      function fillDemo() {
+        signInEmail.value = 'demo@reconai.app';
+        signInPassword.value = 'ReconAI@2026';
+        hideSignInError();
+        signInEmail.focus();
       }
+      demoBtn.addEventListener('click', fillDemo);
+      demoBtn2.addEventListener('click', fillDemo);
 
-      // Handle form submit
-      form.addEventListener('submit', function(e) {
+      // Error helpers
+      function showSignInError(msg) {
+        signInErrorText.textContent = msg || 'Invalid credentials. Please try again.';
+        signInError.classList.remove('hidden');
+      }
+      function hideSignInError() { signInError.classList.add('hidden'); }
+      function showSignUpError(msg) {
+        signUpErrorText.textContent = msg;
+        signUpError.classList.remove('hidden');
+      }
+      function hideSignUpError() { signUpError.classList.add('hidden'); }
+
+      // Handle Sign In
+      signInForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        hideError();
-
-        var email = emailInput.value.trim();
-        var password = passwordInput.value;
-
+        hideSignInError();
+        var email = signInEmail.value.trim();
+        var password = signInPassword.value;
         if (!email || !password) {
-          showError('Please enter both email and password.');
+          showSignInError('Please enter both email and password.');
+          return;
+        }
+        signInBtn.disabled = true;
+        signInText.textContent = 'Signing in...';
+        setTimeout(function() {
+          Auth.login(email, password);
+          window.location.href = '/dashboard.html';
+        }, 600);
+      });
+
+      // Handle Sign Up
+      signUpForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideSignUpError();
+        var name = signUpName.value.trim();
+        var email = signUpEmail.value.trim();
+        var password = signUpPassword.value;
+        var confirm = signUpConfirm.value;
+
+        if (!name || !email || !password || !confirm) {
+          showSignUpError('Please fill in all fields.');
+          return;
+        }
+        if (password.length < 6) {
+          showSignUpError('Password must be at least 6 characters.');
+          return;
+        }
+        if (password !== confirm) {
+          showSignUpError('Passwords do not match.');
           return;
         }
 
-        // Show loading state
-        signInBtn.disabled = true;
-        signInText.textContent = 'Signing in...';
+        signUpBtn.disabled = true;
+        signUpText.textContent = 'Creating account...';
 
-        // Simulate network delay for realism
         setTimeout(function() {
+          var result = Auth.register(email, password, name);
+          if (!result.success) {
+            showSignUpError(result.error);
+            signUpBtn.disabled = false;
+            signUpText.textContent = 'Create Account';
+            return;
+          }
           Auth.login(email, password);
           window.location.href = '/dashboard.html';
         }, 600);
