@@ -9,11 +9,18 @@
     "seed": "cd backend && node src/services/seed.js",
     "test": "node --test backend/src/tests/*.test.js"
   },
-  "keywords": ["reconciliation", "finance", "payments", "settlements", "ai", "supabase"],
+  "keywords": [
+    "reconciliation",
+    "finance",
+    "payments",
+    "settlements",
+    "ai",
+    "supabase"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@google/generative-ai": "^0.21.0",
+    "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.47.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
