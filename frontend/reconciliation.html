@@ -63,18 +63,17 @@
 <div class="px-space-xl pt-space-lg pb-space-base flex flex-col gap-space-base bg-surface-container-lowest shadow-sm">
 <div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
 <div class="flex flex-col">
-<div class="flex items-center gap-space-xs text-on-surface"><h1 class="font-headline-lg text-headline-lg font-semibold tracking-tight">Reconciliation</h1><span class="inline-flex items-center px-space-xs py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium">Production Batch #RUN-0007</span><span class="inline-flex items-center px-space-xs py-0.5 rounded text-label-sm font-label-sm bg-surface-container-low text-secondary border border-outline-variant/30 font-medium">Synthetic benchmark � demonstration dataset</span></div>
+<div class="flex items-center gap-space-xs text-on-surface"><h1 class="font-headline-lg text-headline-lg font-semibold tracking-tight">Reconciliation</h1><span id="recon-badge" class="inline-flex items-center px-space-xs py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-medium"></span></div>
 <p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">Compare payment and settlement records across the selected batch.</p>
 </div>
 <!-- Action Toolbar -->
 <div class="flex flex-wrap items-center gap-space-sm">
 <!-- Dataset Selector -->
 <div class="relative inline-flex items-center">
-<button class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-low hover:bg-surface-container text-on-surface rounded text-body-sm font-body-sm transition-colors" type="button">
-<span class="material-symbols-outlined text-secondary text-[18px]">dataset</span>
-<span class="font-semibold text-on-surface">Merchant Settlement Demo � September 2026</span>
-<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
-</button>
+<select id="dataset-selector" class="appearance-none bg-surface-container-low hover:bg-surface-container text-on-surface rounded px-space-sm py-space-xs text-body-sm font-body-sm cursor-pointer outline-none shadow-sm pr-7 transition-colors min-w-[220px]">
+<option value="">Loading datasets...</option>
+</select>
+<span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[16px] pointer-events-none">expand_more</span>
 </div>
 <!-- Date Range -->
 <div class="flex items-center gap-space-xs px-space-sm py-space-xs bg-surface-container-lowest text-on-surface-variant rounded text-mono-num-sm font-mono-num-sm shadow-sm">
@@ -716,57 +715,106 @@
   loader.innerHTML = '<div style="position:fixed;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#10b981,#3b82f6,#8b5cf6);z-index:9999;animation:loaderPulse 1.5s ease-in-out infinite"></div><style>@keyframes loaderPulse{0%,100%{opacity:1}50%{opacity:.4}}</style>';
   document.body.appendChild(loader);
   function removeLoader(){var l=document.getElementById('api-loader');if(l)l.remove();}
-  function showTableLoading(){
-    var tbody=document.querySelector('tbody.divide-y');
-    if(!tbody) return;
-    var rows='';
-    for(var i=0;i<5;i++){
-      rows+='<tr class="animate-pulse"><td class="py-space-sm px-space-base"><div class="h-4 bg-surface-container rounded w-20"></div></td><td class="py-space-sm px-space-base"><div class="h-4 bg-surface-container rounded w-24"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-16 ml-auto"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-16 ml-auto"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-16 ml-auto"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-14 ml-auto"></div></td><td class="py-space-sm px-space-base text-center"><div class="h-5 bg-surface-container rounded w-16 mx-auto"></div></td><td class="py-space-sm px-space-base"><div class="h-4 bg-surface-container rounded w-20"></div></td><td class="py-space-sm px-space-base"><div class="h-5 bg-surface-container rounded w-20"></div></td><td class="py-space-sm px-space-base text-right"><div class="h-4 bg-surface-container rounded w-14 ml-auto"></div></td></tr>';
-    }
-    tbody.innerHTML=rows;
-  }
   function setText(sel,txt){var el=document.querySelector(sel);if(el)el.textContent=txt;}
-  var currentPage=1,pageLimit=10,currentRunId=null;
+  var currentPage=1,pageLimit=10,currentRunId=null,selectedDatasetId=null,allDatasets=[];
 
   function renderRow(r,idx){
     var diff=r.difference!=null?r.difference:((r.expected_amount||0)-(r.actual_amount||0));
     var statusClass=r.status==='MATCHED'?'bg-[#ecfdf5] text-[#065f46]':r.status==='PARTIAL'?'bg-[#fffbeb] text-[#92400e]':'bg-error-container text-on-error-container';
     var dotClass=r.status==='MATCHED'?'bg-[#10b981]':r.status==='PARTIAL'?'bg-[#f59e0b]':'bg-error';
     var diffClass=diff===0?'text-secondary':r.status==='UNRESOLVED'?'text-error font-bold':'text-[#b45309] font-medium';
-    var excLabel=r.exception_type||'—';
+    var excLabel=r.exception_type||'\u2014';
     var excClass=r.status==='UNRESOLVED'?'bg-error-container/50 text-error':r.status==='PARTIAL'?'bg-[#fef3c7] text-[#92400e]':'text-on-surface-variant';
     var rowClass=r.status==='UNRESOLVED'?'bg-surface-container-low border-l-4 border-error':'hover:bg-surface-container-low/50';
-    return '<tr class="table-row-item '+rowClass+' transition-colors cursor-pointer" onclick="selectRow(\'row-'+r.transaction_id+'\')">'
+    return '<tr class="table-row-item '+rowClass+' transition-colors cursor-pointer" onclick="selectRow(\'row-'+r.transaction_id+'\')" id="row-'+r.transaction_id+'">'
     +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-primary font-semibold">'+r.transaction_id+'</td>'
     +'<td class="py-space-sm px-space-base font-mono-num-sm text-mono-num-sm text-on-surface-variant">'+fmt.date(r.created_at)+'</td>'
     +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">'+fmt.currencyFull(r.expected_amount)+'</td>'
-    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">'+(r.actual_amount!=null?fmt.currencyFull(r.actual_amount):'<span class="text-on-surface-variant">—</span>')+'</td>'
+    +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right">'+(r.actual_amount!=null?fmt.currencyFull(r.actual_amount):'<span class="text-on-surface-variant">\u2014</span>')+'</td>'
     +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right text-on-surface-variant">'+fmt.currencyFull(r.expected_amount)+'</td>'
     +'<td class="py-space-sm px-space-base font-mono-num-md text-mono-num-md text-right '+diffClass+'">'+fmt.currencyFull(Math.abs(diff))+'</td>'
-    +'<td class="py-space-sm px-space-base text-center"><span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-label-sm text-label-sm '+statusClass+' font-semibold"><span class="w-1.5 h-1.5 rounded-full '+dotClass+'"></span> '+r.status+'</span></td>'
+    +'<td class="py-space-sm px-space-base text-center">'+fmt.statusBadge(r.status)+'</td>'
     +'<td class="py-space-sm px-space-base">'+fmt.confidenceBar(r.confidence||0)+'</td>'
     +'<td class="py-space-sm px-space-base"><span class="inline-flex items-center px-1.5 py-0.5 rounded text-label-sm font-label-sm '+excClass+' font-medium">'+excLabel+'</span></td>'
     +'<td class="py-space-sm px-space-base text-right"><button class="text-secondary hover:text-primary font-label-sm text-label-sm" type="button">'+(r.status==='UNRESOLVED'?'Investigate':'View')+'</button></td>'
     +'</tr>';
   }
 
+  async function loadDatasets(){
+    try{
+      var resp=await api.getDatasets();
+      allDatasets=resp.datasets||resp||[];
+      if(!Array.isArray(allDatasets)) allDatasets=[];
+      var sel=document.getElementById('dataset-selector');
+      if(!sel) return;
+      sel.innerHTML='';
+      if(allDatasets.length===0){
+        sel.innerHTML='<option value="">No datasets found</option>';
+        return;
+      }
+      allDatasets.forEach(function(ds,i){
+        var opt=document.createElement('option');
+        opt.value=ds.id;
+        opt.textContent=ds.name+' ('+ds.source_type+', '+(ds.record_count||0)+' records)';
+        if(i===0){opt.selected=true; selectedDatasetId=ds.id;}
+        sel.appendChild(opt);
+      });
+      var badge=document.getElementById('recon-badge');
+      if(badge && allDatasets[0]) badge.textContent=allDatasets[0].name;
+    }catch(e){console.warn('Load datasets:',e.message);}
+  }
+
+  function updateKPIs(run){
+    var total=run.total_records||run.records||0;
+    var matched=run.matched_count||run.matched||0;
+    var partial=run.partial_count||run.partial||0;
+    var unresolved=run.unresolved_count||run.unresolved||0;
+    var rate=run.match_rate||(total>0?((matched/total)*100).toFixed(1):0);
+
+    var kpiCards=document.querySelectorAll('.grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-5 > div');
+    if(kpiCards.length>=5){
+      kpiCards[0].querySelector('.font-mono-num-lg').textContent=total;
+      kpiCards[0].querySelector('p').textContent=run.dataset_name||'Current Run';
+      kpiCards[1].querySelector('.font-mono-num-lg span:first-child').textContent=matched;
+      kpiCards[1].querySelector('p').textContent=rate+'% auto-cleared';
+      kpiCards[2].querySelector('.font-mono-num-lg span:first-child').textContent=partial;
+      kpiCards[2].querySelector('p').textContent=(total>0?((partial/total)*100).toFixed(1):0)+'% variance';
+      kpiCards[3].querySelector('.font-mono-num-lg span:first-child').textContent=unresolved;
+      kpiCards[3].querySelector('p').textContent=(total>0?((unresolved/total)*100).toFixed(1):0)+'% flagged for ops';
+      kpiCards[4].querySelector('.font-mono-num-lg').textContent=rate+'%';
+      kpiCards[4].querySelector('.h-full').style.width=rate+'%';
+    }
+
+    var resultLabel=document.querySelector('h2.font-headline-sm');
+    if(resultLabel && resultLabel.nextElementSibling){
+      resultLabel.nextElementSibling.textContent=total+' payment and settlement records evaluated in current run.';
+    }
+
+    var badge=document.getElementById('recon-badge');
+    if(badge && run.dataset_name) badge.textContent=run.dataset_name;
+
+    var filterTabs=document.querySelectorAll('.flex.items-center.p-1.bg-surface-container-low.rounded-lg button');
+    if(filterTabs.length>=4){
+      filterTabs[0].textContent='All ('+total+')';
+      filterTabs[1].textContent='Matched ('+matched+')';
+      filterTabs[2].textContent='Partial ('+partial+')';
+      filterTabs[3].textContent='Unresolved ('+unresolved+')';
+    }
+  }
+
   async function loadReconciliation(){
     try{
-      var resp=await api.getReconciliationRuns();
-      var runs=resp.runs||resp;
+      var runResp=await api.getReconciliationRuns();
+      var runs=runResp.runs||runResp;
       var run=Array.isArray(runs)?runs[0]:runs;
-      if(!run) return;
+      if(!run){removeLoader();return;}
       currentRunId=run.id;
-      setText('.font-mono-num-lg', run.total_records||run.records||100);
-      setText('[data-kpi="matched-count"]', run.matched_count||run.matched||0);
-      setText('[data-kpi="partial-count"]', run.partial_count||run.partial||0);
-      setText('[data-kpi="unresolved-count"]', run.unresolved_count||run.unresolved||0);
-      setText('[data-kpi="match-rate"]', fmt.percent(run.match_rate));
+      updateKPIs(run);
 
       var results=await api.getReconciliationResults(currentRunId,{page:currentPage,limit:pageLimit});
       var records=results.data||results.results||results.records||results;
       if(!Array.isArray(records)) records=[];
-      var total=results.total||results.pagination?.total||records.length;
+      var total=results.pagination?.total||records.length;
       var totalPages=Math.ceil(total/pageLimit);
 
       var tbody=document.querySelector('tbody.divide-y');
@@ -781,24 +829,41 @@
     removeLoader();
   }
 
+  // Dataset selector change
+  var datasetSel=document.getElementById('dataset-selector');
+  if(datasetSel){
+    datasetSel.addEventListener('change',function(){
+      selectedDatasetId=this.value;
+      var ds=allDatasets.find(function(d){return d.id===selectedDatasetId;});
+      var badge=document.getElementById('recon-badge');
+      if(badge && ds) badge.textContent=ds.name;
+    });
+  }
+
+  // Run Reconciliation
   var runBtn=document.getElementById('run-recon-btn');
   if(runBtn){
     runBtn.addEventListener('click',async function(){
       var modal=document.getElementById('batch-run-modal');
+      var modalText=document.querySelector('#batch-run-modal .font-mono-num-sm');
       if(modal) modal.classList.remove('hidden');
+      var btn=document.getElementById('run-recon-text');
+      if(btn) btn.textContent='Running...';
       try{
-        var dsResp=await api.getDatasets();
-        var datasets=dsResp.datasets||dsResp;
-        var latestDs=Array.isArray(datasets)?datasets[0]:null;
-        var body=latestDs?{dataset_id:latestDs.id}:{};
-        await api.fetch('/reconciliation/runs',{method:'POST',body:JSON.stringify(body)});
+        var body=selectedDatasetId?{dataset_id:selectedDatasetId}:{};
+        var result=await api.fetch('/reconciliation/runs',{method:'POST',body:JSON.stringify(body)});
+        if(modalText) modalText.textContent='Run completed: '+(result.matched||0)+' matched, '+(result.unresolved||0)+' unresolved';
       }catch(e){console.warn(e.message);}
-      setTimeout(function(){loadReconciliation();},500);
+      setTimeout(function(){
+        loadReconciliation();
+        if(btn) btn.textContent='Run Reconciliation';
+      },800);
     });
   }
 
+  // Status filter
   var selects=document.querySelectorAll('select');
-  if(selects[0]){
+  if(selects[0] && selects[0].id!=='dataset-selector'){
     selects[0].addEventListener('change',async function(){
       if(!currentRunId) return;
       var statusMap={'All Statuses (100)':'','Matched (93)':'MATCHED','Partial (4)':'PARTIAL','Unresolved (3)':'UNRESOLVED'};
@@ -809,7 +874,7 @@
         var results=await api.getReconciliationResults(currentRunId,params);
         var records=results.data||results.results||results.records||results;
         if(!Array.isArray(records)) records=[];
-        var total=results.total||results.pagination?.total||records.length;
+        var total=results.pagination?.total||records.length;
         var totalPages=Math.ceil(total/pageLimit);
         var tbody=document.querySelector('tbody.divide-y');
         if(tbody) tbody.innerHTML=records.map(renderRow).join('');
@@ -819,22 +884,17 @@
     });
   }
 
-  var nextBtn=document.querySelectorAll('button[title="Next Page"]');
-  if(nextBtn[0]){
-    nextBtn[0].addEventListener('click',function(){
-      currentPage++;loadReconciliation();
-    });
-  }
-  var prevBtn=document.querySelectorAll('button[title="Previous Page"]');
-  if(prevBtn[0]){
-    prevBtn[0].addEventListener('click',function(){
-      if(currentPage>1){currentPage--;loadReconciliation();}
-    });
-  }
+  // Pagination
+  var nextBtn=document.querySelector('button[title="Next Page"]');
+  if(nextBtn) nextBtn.addEventListener('click',function(){ currentPage++;loadReconciliation(); });
+  var prevBtn=document.querySelector('button[title="Previous Page"]');
+  if(prevBtn) prevBtn.addEventListener('click',function(){ if(currentPage>1){currentPage--;loadReconciliation();} });
 
-  showTableLoading();
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadReconciliation);
-  else loadReconciliation();
+  // Init: load datasets first, then reconciliation
+  loadDatasets().then(function(){
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',loadReconciliation);
+    else loadReconciliation();
+  });
 })();
 </script>
 </body></html>

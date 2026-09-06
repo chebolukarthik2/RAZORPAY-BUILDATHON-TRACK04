@@ -24,31 +24,55 @@ router.post('/runs', async (req, res) => {
       return res.status(400).json({ error: 'No dataset loaded. Please upload or load a dataset first.' });
     }
 
+    const { data: dsInfo } = await supabase
+      .from('datasets')
+      .select('name')
+      .eq('id', datasetId)
+      .single();
+
     const result = await runReconciliation(datasetId);
-    res.json(result);
+    res.json({ ...result, dataset_name: dsInfo?.name || 'Unknown Dataset' });
   } catch (error) {
     console.error('Error running reconciliation:', error);
     res.status(500).json({ error: 'Reconciliation failed', details: error.message });
   }
 });
 
-// GET /reconciliation/runs - List all runs
+// GET /reconciliation/runs - List all runs with dataset names
 router.get('/runs', async (req, res) => {
   try {
-    const { data, error } = await supabase
+    const { data: runs, error } = await supabase
       .from('reconciliation_runs')
       .select('*')
       .order('created_at', { ascending: false });
 
     if (error) throw error;
-    res.json({ runs: data });
+
+    const dsIds = [...new Set(runs.map(r => r.dataset_id).filter(Boolean))];
+    let datasets = [];
+    if (dsIds.length > 0) {
+      const { data: dsData } = await supabase
+        .from('datasets')
+        .select('id, name')
+        .in('id', dsIds);
+      datasets = dsData || [];
+    }
+    const dsMap = {};
+    datasets.forEach(d => { dsMap[d.id] = d.name; });
+
+    const enriched = runs.map(r => ({
+      ...r,
+      dataset_name: dsMap[r.dataset_id] || 'Unknown Dataset',
+    }));
+
+    res.json({ runs: enriched });
   } catch (error) {
     console.error('Error fetching runs:', error);
     res.status(500).json({ error: 'Failed to fetch runs' });
   }
 });
 
-// GET /reconciliation/runs/:id - Get run details
+// GET /reconciliation/runs/:id - Get run details with dataset name
 router.get('/runs/:id', validateRunId, async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,7 +87,16 @@ router.get('/runs/:id', validateRunId, async (req, res) => {
       return res.status(404).json({ error: 'Run not found' });
     }
 
-    // Get financial summary for this run
+    let datasetName = 'Unknown Dataset';
+    if (run.dataset_id) {
+      const { data: ds } = await supabase
+        .from('datasets')
+        .select('name')
+        .eq('id', run.dataset_id)
+        .single();
+      if (ds) datasetName = ds.name;
+    }
+
     const { data: results } = await supabase
       .from('reconciliation_results')
       .select('expected_amount, actual_amount, difference')
@@ -76,7 +109,7 @@ router.get('/runs/:id', validateRunId, async (req, res) => {
     }
 
     res.json({
-      run,
+      run: { ...run, dataset_name: datasetName },
       financials: { grossPayment, netSettled },
     });
   } catch (error) {
