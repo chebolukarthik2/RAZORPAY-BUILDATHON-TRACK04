@@ -163,7 +163,7 @@
 <span class="font-mono-num-sm text-[10px] text-secondary px-1.5 py-0.2 rounded bg-surface-container">Confidence: 96%</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
-              “Match rate improved <strong class="text-primary font-semibold">4.2%</strong> compared with the previous reconciliation run. Unresolved exceptions decreased from 6 to 3, primarily due to automated fee settlement matching on HDFC gateway.”
+              ï¿½Match rate improved <strong class="text-primary font-semibold">4.2%</strong> compared with the previous reconciliation run. Unresolved exceptions decreased from 6 to 3, primarily due to automated fee settlement matching on HDFC gateway.ï¿½
             </p>
 </div>
 </div>
@@ -350,7 +350,7 @@
 <tr class="hover:bg-surface-container-low/40 transition-colors border-l-2 border-l-error">
 <td class="py-2.5 px-space-md font-mono-num-md font-semibold text-primary">TXN_1078</td>
 <td class="py-2.5 px-space-md font-mono-num-md text-right">?7,800</td>
-<td class="py-2.5 px-space-md font-mono-num-md text-right text-secondary">—</td>
+<td class="py-2.5 px-space-md font-mono-num-md text-right text-secondary">ï¿½</td>
 <td class="py-2.5 px-space-md font-mono-num-md text-right font-semibold text-error">?7,800</td>
 <td class="py-2.5 px-space-md">
 <span class="font-medium text-on-surface">Missing settlement</span>
@@ -636,11 +636,11 @@
           var diff = (r.payment_amount||0)-(r.settlement_amount||0);
           var bc = r.status==='UNRESOLVED'?'border-l-error':'border-l-[#f59e0b]';
           return '<tr class="hover:bg-surface-container-low/40 transition-colors border-l-2 '+bc+'">'
-          +'<td class="py-2.5 px-space-md font-mono-num-md font-semibold text-primary">'+(r.transaction_id||'—')+'</td>'
+          +'<td class="py-2.5 px-space-md font-mono-num-md font-semibold text-primary">'+(r.transaction_id||'ï¿½')+'</td>'
           +'<td class="py-2.5 px-space-md font-mono-num-md text-right">'+fmt.currency(r.payment_amount)+'</td>'
-          +'<td class="py-2.5 px-space-md font-mono-num-md text-right text-secondary">'+(r.settlement_amount?fmt.currency(r.settlement_amount):'—')+'</td>'
+          +'<td class="py-2.5 px-space-md font-mono-num-md text-right text-secondary">'+(r.settlement_amount?fmt.currency(r.settlement_amount):'ï¿½')+'</td>'
           +'<td class="py-2.5 px-space-md font-mono-num-md text-right font-semibold '+(diff>0?'text-error':'text-secondary')+'">'+fmt.currency(diff)+'</td>'
-          +'<td class="py-2.5 px-space-md"><span class="font-medium text-on-surface">'+(r.exception_type||'—')+'</span></td>'
+          +'<td class="py-2.5 px-space-md"><span class="font-medium text-on-surface">'+(r.exception_type||'ï¿½')+'</span></td>'
           +'<td class="py-2.5 px-space-md text-center">'+fmt.confidenceBar(r.confidence||0)+'</td>'
           +'<td class="py-2.5 px-space-md">'+fmt.statusBadge(r.status)+'</td>'
           +'<td class="py-2.5 px-space-md text-right"><button class="px-2.5 py-1 text-label-sm font-label-sm font-semibold text-primary hover:bg-surface-container border border-outline-variant/60 rounded transition-colors" type="button">Review</button></td>'
@@ -716,7 +716,7 @@
       if (paymentsFile) formData.append('payments', paymentsFile);
       if (settlementsFile) formData.append('settlements', settlementsFile);
 
-      var res = await fetch(api.baseURL + '/api/datasets/upload', {
+      var res = await fetch(API_BASE + '/datasets/upload', {
         method: 'POST',
         body: formData,
       });
