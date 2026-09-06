@@ -156,6 +156,53 @@ Column names are auto-mapped (e.g., `txn_id` → `transaction_id`, `date` → `p
 - **Auth**: Client-side mock (localStorage-based)
 - **Hosting**: Vercel (frontend + API), Render (alternative)
 
+## System Architecture
+
+```mermaid
+graph TD
+    subgraph Client["Client"]
+        A["Browser<br/>Static Frontend (HTML + Tailwind CDN + Vanilla JS)"]
+    end
+
+    subgraph Hosting["Hosting (either topology)"]
+        B["Vercel<br/>Static frontend + /api serverless function"]
+        C["Render<br/>Single Express server (frontend + API)"]
+    end
+
+    subgraph API["Express API (backend/src)"]
+        D["Routes<br/>dashboard · datasets · reconciliation · exceptions · audit · ai"]
+        E["Reconciliation Engine<br/>Deterministic matching + confidence scoring"]
+        F["CSV Parser<br/>Column auto-mapping & validation"]
+        G["AI Service<br/>Prompt building for Gemini"]
+    end
+
+    subgraph External["External Services"]
+        H[("Supabase<br/>PostgreSQL")]
+        I["Google Gemini 2.5 Flash"]
+    end
+
+    A -- "fetch(RECONAI_API_URL + /api/...)" --> B
+    A -. "or, single-server setup" .-> C
+    B --> D
+    C --> D
+    D --> E
+    D --> F
+    D --> G
+    D -- "reads/writes (service role)" --> H
+    G -- "AI requests" --> I
+```
+
+**Request flow**
+
+1. The frontend is a set of static HTML pages (`login`, `dashboard`, `reconciliation`, `exceptions`, `audit`, `finance-qna`) that talk to the API only through `frontend/api.js`, using the base URL set in `frontend/config.js` (`window.RECONAI_API_URL`).
+2. Two supported deployment topologies:
+   - **Split (Vercel + Render):** the frontend is served as static files from Vercel, and `RECONAI_API_URL` points at a separately-hosted Express server on Render. `vercel.json`'s `/api/*` route and `api/index.js` are unused in this setup.
+   - **Single-server (Vercel serverless or Render/local):** `api/index.js` wraps the same Express app (`backend/src/index.js`) as a Vercel serverless function, and `vercel.json` routes `/api/*` requests to it — so one deployment serves both frontend and API. Locally, `npm start` runs the same Express app directly with `app.listen()`.
+3. Inside the Express app, requests are routed by resource (`routes/`) to business-logic services (`services/`): the CSV parser normalizes uploaded/demo data, the reconciliation engine matches payments to settlements and scores confidence, and the AI service builds prompts for exception analysis, batch insights, and Finance Q&A.
+4. All persistent data (datasets, payments, settlements, reconciliation runs/results, exceptions, audit logs) is read from and written to **Supabase (PostgreSQL)** via the service-role client in `config/database.js`.
+5. AI-powered routes additionally call **Google Gemini 2.5 Flash** and return the model's output alongside the reconciliation data.
+6. Responses are returned as JSON and rendered directly by the vanilla-JS frontend — there is no server-side rendering or build step.
+
 ## Project Structure
 
 ```
