@@ -1,2 +1,2 @@
-// ReconAI Config
-window.RECONAI_API_URL = 'https://razorpay-buildathon-track04.onrender.com/api';
+// ReconAI Config - Use same origin for Vercel serverless
+window.RECONAI_API_URL = window.location.origin + '/api';
