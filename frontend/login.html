@@ -214,22 +214,6 @@
             <span id="signUpText">Create Account</span>
           </button>
 
-          <!-- Divider -->
-          <div class="relative flex items-center gap-space-sm py-space-xs">
-            <div class="flex-1 h-px bg-outline-variant/40"></div>
-            <span class="font-label-sm text-label-sm text-secondary">or</span>
-            <div class="flex-1 h-px bg-outline-variant/40"></div>
-          </div>
-
-          <!-- Demo Button (same) -->
-          <button
-            type="button"
-            id="demoBtn2"
-            class="w-full h-10 bg-surface-container-low hover:bg-surface-container text-primary border border-outline-variant/50 rounded-lg font-label-md text-label-md shadow-sm transition-all active:scale-[0.99] flex items-center justify-center gap-space-xs"
-          >
-            <span class="material-symbols-outlined text-[18px] text-tertiary-fixed-dim">science</span>
-            <span>Use Demo Account</span>
-          </button>
         </form>
 
         <!-- Toggle Sign In / Sign Up -->
@@ -303,7 +287,6 @@
       var signUpText = document.getElementById('signUpText');
       var signUpError = document.getElementById('signUpError');
       var signUpErrorText = document.getElementById('signUpErrorText');
-      var demoBtn2 = document.getElementById('demoBtn2');
 
       // Toggle password visibility
       togglePassword.addEventListener('click', function() {
@@ -340,7 +323,6 @@
         signInEmail.focus();
       }
       demoBtn.addEventListener('click', fillDemo);
-      demoBtn2.addEventListener('click', fillDemo);
 
       // Error helpers
       function showSignInError(msg) {
